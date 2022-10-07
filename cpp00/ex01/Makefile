@@ -1,12 +1,11 @@
 
-NAME = zombie
+NAME = phonebook
 
 GIT_REPO = origin
 
 EXECUTION = ./$(NAME) + arguments
 
-SRC = 	new_Zombie.cpp Zombie.cpp randomChump.cpp \
-		main.cpp
+SRC = 	PhoneBook.cpp \
 
 O = obj/
 I = inc/

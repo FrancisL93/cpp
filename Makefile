@@ -76,12 +76,20 @@
 
 GIT_REPO = github
 
+# SUBDIRS = $(sort $(dir $(wildcard ./*/*/)))
+SUBDIRS = $(wildcard */*/)
+
+$(SUBDIRS): FORCE
+	@Make -C $@ fclean
+
+FORCE:
+
 gitupdate:
 	printf '\nEnter pull or fetch to update from Github: ' && read PULLFETCH && \
 	printf '\nEnter Branch Name (Press Enter For All Branches): ' && \
 	read BRANCH && git $$PULLFETCH $(GIT_REPO) $$BRANCH
 
-gitadd: #Clean repo before adding files to git
+gitadd: $(SUBDIRS) #Clean repo before adding files to git
 	git add *
 
 gitcommit: gitadd #Commit modifications locally before push, takes user input for commit's name

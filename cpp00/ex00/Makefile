@@ -1,12 +1,11 @@
 
-NAME = zombie
+NAME = megaphone
 
 GIT_REPO = origin
 
 EXECUTION = ./$(NAME) + arguments
 
-SRC = 	new_Zombie.cpp Zombie.cpp randomChump.cpp \
-		main.cpp
+SRC = 	Megaphone.cpp \
 
 O = obj/
 I = inc/
@@ -22,6 +21,7 @@ RM = /bin/rm -f
 RMDIR = /bin/rm -rf
 
 all: $(NAME)
+
 
 $O: #Create obj directory
 	@mkdir $@
