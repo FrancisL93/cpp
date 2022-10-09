@@ -5,8 +5,7 @@ GIT_REPO = origin
 
 EXECUTION = ./$(NAME)
 
-SRC = 	main.cpp \
-		#phonebook.hpp
+SRC = 	main.cpp build_contact.cpp \
 
 O = obj/
 I = inc/

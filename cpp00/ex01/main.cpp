@@ -14,9 +14,9 @@ void	search(void){
 	return ;
 }
 
-void	add(void){
-	PhoneBook 	book;
-	Contact		contact;
+void	add(void) {
+	Contact	contact;
+
 	return ;
 }
 
