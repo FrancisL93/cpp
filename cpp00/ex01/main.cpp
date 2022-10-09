@@ -1,4 +1,7 @@
-#include "phonebook.hpp"
+#include <iomanip>
+#include <iostream>
+#include "PhoneBook.hpp"
+#include "Contact.hpp"
 
 void	display_intro(void){
 	std::cout << "\n\e[1;32mWelcome to the PhoneBook!\e[0m\n\n";
@@ -12,6 +15,8 @@ void	search(void){
 }
 
 void	add(void){
+	PhoneBook 	book;
+	Contact		contact;
 	return ;
 }
 
@@ -37,6 +42,6 @@ int main(int argc, char **argv)
 		}
     }
 	else
-		std::cout << "ERROR: Execute ./phonebook without arguments!\n";
+		std::cout << "\e[1;31mERROR: Execute ./phonebook without arguments!\e[0m\n";
 	return (0);
 }
