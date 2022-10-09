@@ -64,7 +64,8 @@ segfault: $(OBJ)
 	@$(CC) $(CFLAGS) -fsanitize=address $(OBJ) -o $(NAME)
 	
 exe: $(NAME) #Execute program
-	./$(NAME)
+	@printf '\nEntrer les paramètres à passer au programme: ' && read PARAMS && \
+	./$(NAME) $$PARAMS
 
 exe-leak: $(NAME)
 	valgrind --leak-check=full --trace-children=yes --track-origins=yes --show-leak-kinds=all ./$(NAME)
