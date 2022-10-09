@@ -74,10 +74,9 @@
 # exe-leak: $(NAME)
 # 	valgrind --leak-check=full --trace-children=yes --track-origins=yes --show-leak-kinds=all ./$(NAME)
 
-GIT_REPO = github
+GIT_REPO = origin
 
-# SUBDIRS = $(sort $(dir $(wildcard ./*/*/)))
-SUBDIRS = $(dir $(wildcard */*/))
+SUBDIRS = $(wildcard */)
 
 $(SUBDIRS): FORCE
 	@Make -C $@ fclean
@@ -90,7 +89,7 @@ gitupdate:
 	read BRANCH && git $$PULLFETCH $(GIT_REPO) $$BRANCH
 
 gitadd: $(SUBDIRS) #Clean repo before adding files to git
-	git add *
+	git add --all -- ':!Makefile'
 
 gitcommit: gitadd #Commit modifications locally before push, takes user input for commit's name
 	@printf '\nEnter Commit Name: '

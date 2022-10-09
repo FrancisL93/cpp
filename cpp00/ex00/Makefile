@@ -1,11 +1,10 @@
-
 NAME = megaphone
 
 GIT_REPO = origin
 
 EXECUTION = ./$(NAME) + arguments
 
-SRC = 	Megaphone.cpp \
+SRC = 	megaphone.cpp \
 
 O = obj/
 I = inc/
