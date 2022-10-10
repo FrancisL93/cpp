@@ -1,8 +1,7 @@
 #include <iostream>
 #include <iomanip>
-#include "Contact.hpp"
 
-std::string	first_name(void) {
+std::string	get_first_name(void) {
 	std::string	input;
 	std::cout << "Enter First Name: " << std::endl;
 	std::getline(std::cin, input);
@@ -13,7 +12,7 @@ std::string	first_name(void) {
 	return (input);
 }
 
-std::string	last_name(void) {
+std::string	get_last_name(void) {
 	std::string	input;
 	std::cout << "Enter Last Name: " << std::endl;
 	std::getline(std::cin, input);
@@ -24,7 +23,7 @@ std::string	last_name(void) {
 	return (input);
 }
 
-std::string	nickname(void) {
+std::string	get_nickname(void) {
 	std::string	input;
 	std::cout << "Enter Nickname: " << std::endl;
 	std::getline(std::cin, input);
@@ -35,7 +34,7 @@ std::string	nickname(void) {
 	return (input);
 }
 
-std::string	phone_number(void) {
+std::string	get_phone_number(void) {
 	std::string	input;
 	std::cout << "Enter Phone Number: " << std::endl;
 	std::getline(std::cin, input);
@@ -46,7 +45,7 @@ std::string	phone_number(void) {
 	return (input);
 }
 
-std::string	darkest_secret(void) {
+std::string	get_darkest_secret(void) {
 	std::string	input;
 	std::cout << "Enter Darkest Secret: " << std::endl;
 	std::getline(std::cin, input);

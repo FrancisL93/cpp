@@ -14,14 +14,29 @@ void	search(void){
 	return ;
 }
 
-void	add(void) {
-	Contact	contact;
+void	add_contact(PhoneBook phonebook) {
+	static int	i = 0;
+	Contact	new_contact;
 
+	if (i == 7)
+		i = 0;
+	new_contact.first_name = get_first_name();
+	new_contact.last_name = get_last_name();
+	new_contact.nickname = get_nickname();
+	new_contact.phone_number = get_phone_number();
+	new_contact.darkest_secret = get_darkest_secret();
+	phonebook.contact[i++] = new_contact;
+}
+
+void	add(PhoneBook phonebook) {
+
+	add_contact(phonebook);
 	return ;
 }
 
 int main(int argc, char **argv)
 {
+	PhoneBook phonebook;
     if (argc == 1 && argv)
     {
 		display_intro();	
@@ -32,7 +47,7 @@ int main(int argc, char **argv)
 			if (std::cin.eof())
 				return (0);
 			if(input == "ADD")
-				add();
+				add(phonebook);
 			else if (input == "SEARCH")
 				search();
 			else

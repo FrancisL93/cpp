@@ -6,23 +6,21 @@
 class PhoneBook
 {
 private:
-	/* data */
+	
 public:
-	Contact Contact;
+	Contact contact[8];
 	PhoneBook();
 	~PhoneBook();
 };
 
 PhoneBook::PhoneBook()
 {
-	std::cout << "Constructor called" << std::endl;
 	return ;
 }
 
 PhoneBook::~PhoneBook()
 {
-	std::cout << "Destructor called" << std::endl;
-	return ;
+
 }
 
 #endif
