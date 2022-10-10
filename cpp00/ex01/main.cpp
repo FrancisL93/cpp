@@ -12,19 +12,54 @@ void	display_intro(void){
 	std::cout << "Enter EXIT to quit the PhoneBook\n\n";
 }
 
+void	print_informations(std::string str) {
+	int	len;
+	
+	len = str.length();
+	for (int i = 0; i < 10 - len; i++) {
+		std::cout << " ";
+	}
+	for(int j = 0; j < len; j++) {
+		if (len > 10 && j == 9) {
+			std::cout << ".";	
+			break ;	
+		}
+		std::cout << str[j];
+	}
+}
+
 int	display_contacts(PhoneBook phonebook) {
-	for (int i = 0; i < phonebook.n_contacts; i++) {
-		std::cout << "\n\e[1;32mContact #" << i + 1 << ":\e[0m\n";
-		std::cout << "First Name: " << phonebook.contact[i].first_name << "\n";
-		std::cout << "Last Name: " << phonebook.contact[i].last_name << "\n";
-		std::cout << "Nickname: " << phonebook.contact[i].nickname << "\n";
-		std::cout << "Phone Number: " << phonebook.contact[i].phone_number << "\n";
-		std::cout << "Darkest Secret: " << phonebook.contact[i].darkest_secret << "\n";
+	std::cout << "\n\e[1;32m     Index|First Name| Last Name|  Nickname\e[0m\n";
+	for (int index = 0; index < phonebook.n_contacts; index++) {
+		print_informations(std::to_string(index + 1));
+		std::cout << "|";
+		print_informations(phonebook.contact[index].last_name);
+		std::cout << "|";
+		print_informations(phonebook.contact[index].nickname);
+		std::cout << "|";
+		print_informations(phonebook.contact[index].phone_number);
+		std::cout << "\n";
 	}
 	if (phonebook.n_contacts == 0) {
 		std::cout << "\e[1;31mPhoneBook is empty... Go add contacts!\e[0m\n";
 		return (1);
 	}
+	return (0);
+}
+
+int	print_contact_info(PhoneBook phonebook, std::string input) {
+	int	index = std::stoi(input);
+
+	std::cout << input;
+	if (index < 1 && index > phonebook.n_contacts)
+		return (1);
+	index -= 1;
+	std::cout << "\n\e[1;32mContact #" << index + 1 << " :\e[0m\n";
+	std::cout << "\e[1;34mFirst Name:\e[0m " << phonebook.contact[index].first_name << "\n";
+	std::cout << "\e[1;34mLast Name: \e[0m" << phonebook.contact[index].last_name << "\n";
+	std::cout << "\e[1;34mNickname: \e[0m" << phonebook.contact[index].nickname << "\n";
+	std::cout << "\e[1;34mPhone Number: \e[0m" << phonebook.contact[index].phone_number << "\n";
+	std::cout << "\e[1;34mDarkest Secret: \e[0m" << phonebook.contact[index].darkest_secret << "\n\n";
 	return (0);
 }
 
@@ -36,6 +71,8 @@ void	search(PhoneBook phonebook){
 	std::cout << "\nEnter contact's index to display contact's information (or RETURN to go back):  ";
 	std::getline(std::cin, input);
 	while (input != "RETURN" && !std::cin.eof()) {
+		if (!print_contact_info(phonebook, input))
+			return ;
 		std::cout << "\nEnter contact's index to display contact's information (or RETURN to go back):  ";
 		std::getline(std::cin, input);
 	}
@@ -67,7 +104,7 @@ int main(int argc, char **argv)
 				std::cout << "\e[1;31mCommand invalid!\e[0m\nRe-";
 			if (std::cin.eof())
 				return (0);
-			std::cout << "Type your command: ";
+			std::cout << "Type your command (ADD / SEARCH / EXIT): ";
 			std::getline(std::cin, input);
 		}
 		if (std::cin.eof())
