@@ -3,6 +3,8 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
+void	new_contact();
+
 void	display_intro(void){
 	std::cout << "\n\e[1;32mWelcome to the PhoneBook!\e[0m\n\n";
 	std::cout << "Enter ADD to save anew contact\n";
@@ -10,51 +12,66 @@ void	display_intro(void){
 	std::cout << "Enter EXIT to quit the PhoneBook\n\n";
 }
 
-void	search(void){
-	return ;
+int	display_contacts(PhoneBook phonebook) {
+	for (int i = 0; i < phonebook.n_contacts; i++) {
+		std::cout << "\n\e[1;32mContact #" << i + 1 << ":\e[0m\n";
+		std::cout << "First Name: " << phonebook.contact[i].first_name << "\n";
+		std::cout << "Last Name: " << phonebook.contact[i].last_name << "\n";
+		std::cout << "Nickname: " << phonebook.contact[i].nickname << "\n";
+		std::cout << "Phone Number: " << phonebook.contact[i].phone_number << "\n";
+		std::cout << "Darkest Secret: " << phonebook.contact[i].darkest_secret << "\n";
+	}
+	if (phonebook.n_contacts == 0) {
+		std::cout << "\e[1;31mPhoneBook is empty... Go add contacts!\e[0m\n";
+		return (1);
+	}
+	return (0);
 }
 
-void	add_contact(PhoneBook phonebook) {
-	static int	i = 0;
-	Contact	new_contact;
+void	search(PhoneBook phonebook){
+	std::string	input;
 
-	if (i == 7)
-		i = 0;
-	new_contact.first_name = get_first_name();
-	new_contact.last_name = get_last_name();
-	new_contact.nickname = get_nickname();
-	new_contact.phone_number = get_phone_number();
-	new_contact.darkest_secret = get_darkest_secret();
-	phonebook.contact[i++] = new_contact;
-}
-
-void	add(PhoneBook phonebook) {
-
-	add_contact(phonebook);
+	if (display_contacts(phonebook))
+		return ;
+	std::cout << "\nEnter contact's index to display contact's information (or RETURN to go back):  ";
+	std::getline(std::cin, input);
+	while (input != "RETURN" && !std::cin.eof()) {
+		std::cout << "\nEnter contact's index to display contact's information (or RETURN to go back):  ";
+		std::getline(std::cin, input);
+	}
+	if (std::cin.eof())
+		exit(0);
 	return ;
 }
 
 int main(int argc, char **argv)
 {
 	PhoneBook phonebook;
+
     if (argc == 1 && argv)
     {
 		display_intro();	
 		std::string input;
 		std::cout << "Type your command: ";
 		std::getline(std::cin, input);
-		while (input != "EXIT") {
-			if (std::cin.eof())
-				return (0);
-			if(input == "ADD")
-				add(phonebook);
+		while (input != "EXIT" && !std::cin.eof()) {
+			if(input == "ADD") {
+				phonebook.new_contact();
+				if (phonebook.n_contacts < 8) {	
+					phonebook.n_contacts++;
+				}
+			}
 			else if (input == "SEARCH")
-				search();
+				search(phonebook);
 			else
 				std::cout << "\e[1;31mCommand invalid!\e[0m\nRe-";
+			if (std::cin.eof())
+				return (0);
 			std::cout << "Type your command: ";
 			std::getline(std::cin, input);
 		}
+		if (std::cin.eof())
+			return (0);
     }
 	else
 		std::cout << "\e[1;31mERROR: Execute ./phonebook without arguments!\e[0m\n";
