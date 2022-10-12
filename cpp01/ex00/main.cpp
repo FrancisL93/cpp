@@ -1,9 +1,10 @@
 #include "Zombie.hpp"
 
-int	main( void ) {
-	Zombie zombie;
+Zombie*	newZombie(std::string name );
 
-	zombie.randomChump("Frankenstein");
-	zombie.announce();
+int	main( void ) {
+	Zombie zombie1;
+
+	zombie1.randomChump( "Frankenstein" );
 	return 0;
 }
