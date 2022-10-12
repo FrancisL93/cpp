@@ -3,9 +3,9 @@ NAME = zombie
 
 GIT_REPO = origin
 
-EXECUTION = ./$(NAME) + arguments
+EXECUTION = ./$(NAME)
 
-SRC = 	new_Zombie.cpp Zombie.cpp randomChump.cpp \
+SRC = 	newZombie.cpp Zombie.cpp randomChump.cpp \
 		main.cpp
 
 O = obj/
