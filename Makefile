@@ -76,8 +76,7 @@
 
 GIT_REPO = github
 
-# SUBDIRS = $(sort $(dir $(wildcard ./*/*/)))
-SUBDIRS = $(dir $(wildcard */*/))
+SUBDIRS = $(dir $(wildcard */))
 
 $(SUBDIRS): FORCE
 	@Make -C $@ fclean
@@ -85,7 +84,7 @@ $(SUBDIRS): FORCE
 FORCE:
 
 gitupdate:
-	printf '\nEnter pull or fetch to update from Github: ' && read PULLFETCH && \
+	printf '\nEnter pull or fetch to update from $(GIT_REPO): ' && read PULLFETCH && \
 	printf '\nEnter Branch Name (Press Enter For All Branches): ' && \
 	read BRANCH && git $$PULLFETCH $(GIT_REPO) $$BRANCH
 
