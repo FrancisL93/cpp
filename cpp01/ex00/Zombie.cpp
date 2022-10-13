@@ -9,5 +9,6 @@ Zombie::Zombie( void ) {
 }
 
 Zombie::~Zombie( void ) {
-
+	std::cout << this->name << " destroyed!" << std::endl;
+	delete this;
 }
