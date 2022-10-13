@@ -1,7 +1,7 @@
 
-# NAME = megaphone
+# NAME =
 
-# SRC = 	Megaphone.cpp \
+# SRC =
 
 # O = obj/
 # I = inc/

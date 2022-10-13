@@ -84,7 +84,7 @@ $(SUBDIRS): FORCE
 FORCE:
 
 gitupdate:
-	printf '\nEnter pull or fetch to update from $(GIT_REPO): ' && read PULLFETCH && \
+	@printf '\nEnter \e[1;32mpull\e[0m or \e[1;31mfetch\e[0m to update from $(GIT_REPO): ' && read PULLFETCH && \
 	printf '\nEnter Branch Name (Press Enter For All Branches): ' && \
 	read BRANCH && git $$PULLFETCH $(GIT_REPO) $$BRANCH
 
