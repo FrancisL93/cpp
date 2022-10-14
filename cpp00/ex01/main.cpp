@@ -24,10 +24,14 @@ int	display_contacts(PhoneBook phonebook) {
 }
 
 int	is_index(PhoneBook phonebook, std::string input) {
-	int index = std::stoi(input);
-
-	if (index > 0 && index < phonebook.n_contacts) {
-		phonebook.contact[index - 1].displayContact();
+	int index;
+	
+	if (input.length() == 1 && std::isdigit(input[0]))
+		index = std::stoi(input);
+	else
+		return (1);
+	if (index > 0 && index <= phonebook.n_contacts) {
+		phonebook.contact[index - 1].displayContactInfo();
 		return (0);
 	}
 	else

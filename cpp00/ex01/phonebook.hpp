@@ -10,8 +10,8 @@ class PhoneBook
 	private:
 		
 	public:
-		Contact contact[8];
-		int	n_contacts;
+		Contact	contact[8];
+		int		n_contacts;
 
 		void	new_contact( void );
 

@@ -39,6 +39,11 @@ void	Contact::createContact( int index, bool full ) {
 	std::cout << "\n\e[1;32mCreating a new contact for the PhoneBook!\e[0m\n\n";
 	if (full)
 		std::cout << "\e[1;31mPhoneBook full! New contact will erase contact #" << index + 1 << "\e[0m\n\n";
+	setFirstName();
+	setLastName();
+	setNickname();
+	setPhoneNumber();
+	setDarkestSecret();
 	std::cout << "\n\e[1;32mNew contact #" << index +1 << " successfully added!\e[0m\n\n";
 	return ;
 }
