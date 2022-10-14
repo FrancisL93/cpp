@@ -5,7 +5,7 @@ GIT_REPO = origin
 
 EXECUTION = ./$(NAME)
 
-SRC = 	main.cpp build_contact.cpp \
+SRC = 	main.cpp PhoneBook.cpp Contact.cpp \
 
 O = obj/
 I = inc/
@@ -115,4 +115,3 @@ list: 	#Show all make rules
 #MAGENTA	\e[1;35m
 #CYAN		\e[1;36m
 #WHITE		\e[1;37m
-
