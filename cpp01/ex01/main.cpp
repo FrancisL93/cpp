@@ -1,9 +1,9 @@
 #include "Zombie.hpp"
 
 int	main( void ) {
-	Zombie	*zombie_heap;
+	Zombie	*zombie_horde;
 
-	zombie_heap = NULL;
-	zombie_heap->zombieHorde(10, "Zombieee");
+	zombie_horde = zombieHorde(10, "Zombieee");
+	delete [] zombie_horde;
 	return 0;
 }

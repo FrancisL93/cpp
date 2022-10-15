@@ -1,5 +1,5 @@
 
-NAME = zombie
+NAME = zombies
 
 GIT_REPO = origin
 
