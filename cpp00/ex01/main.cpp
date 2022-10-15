@@ -49,7 +49,7 @@ void	search(PhoneBook phonebook){
 	while (input != "RETURN" && !std::cin.eof()) {
 		if (!is_index(phonebook, input))
 			return ;
-		std::cout << "\nEnter contact's index to display contact's information (or RETURN to go back):  ";
+		std::cout << "\n\e[1;31mIndex invalid!\n\e[0mEnter contact's index to display contact's information (or RETURN to go back):  ";
 		std::getline(std::cin, input);
 	}
 	if (std::cin.eof())

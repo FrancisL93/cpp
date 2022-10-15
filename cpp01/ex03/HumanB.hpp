@@ -12,6 +12,7 @@ class HumanB {
 		void	attack( void );
 		
 		HumanB( void );
+		HumanB( std::string weapon );
 		~HumanB( void );
 };
 
