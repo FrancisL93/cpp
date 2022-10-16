@@ -78,9 +78,7 @@ segfault: $(OBJ)
 	@$(CC) $(CFLAGS) -fsanitize=address $(OBJ) -o $(NAME)
 
 debug: $(OBJ) #Compile for debugger
-	@echo "\033[0;32mCompiling $(NAME)...\033[0m"
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-	@echo "\033[0;32m$(NAME) compiled! Execute as: $(EXECUTION)\033[0m"
+	@$(CC) $(CFLAGS) -g $(OBJ) -o $(NAME)
 
 ## ************************************************************************** ##
 ##                                   Git                                      ##
@@ -110,13 +108,12 @@ gitfetch: #Fetch to update branches without merging with local repo
 	@printf '\nEnter Branch To Fetch (Press Enter For All Branches): '
 	@read FETCH && git fetch $(GIT_REPO) $$FETCH
 	
-gitpull: #Pull to overwrite local data if repo is different
+gitpull: #Pull and overwrite local data if repo is different
 	@printf '\nEnter Branch To Pull (Press Enter For All Branches): '
 	@read PULL && git pull $(GIT_REPO) $$FETCH
 
 list: 	#Show all make rules
 	@grep '^[^#[:space:]].*:' Makefile
-
 
 .PHONY: all clean fclean re
 
@@ -130,4 +127,3 @@ list: 	#Show all make rules
 #MAGENTA	\e[1;35m
 #CYAN		\e[1;36m
 #WHITE		\e[1;37m
-
