@@ -1,7 +1,7 @@
 
-# NAME = megaphone
+# NAME =
 
-# SRC = 	Megaphone.cpp \
+# SRC =
 
 # O = obj/
 # I = inc/
@@ -13,7 +13,7 @@
 
 # OBJ = $(SRC:%=$O%.o)
 
-RM = /bin/rm -f
+# RM = /bin/rm -f
 # RMDIR = /bin/rm -rf
 
 # all: $(NAME)
@@ -80,15 +80,13 @@ SUBDIRS = $(wildcard */)
 
 $(SUBDIRS): FORCE
 	@Make -C $@ fclean
-	@$(RM) .DS_STORE
 
 fclean: $(SUBDIRS)
-
 
 FORCE:
 
 gitupdate:
-	printf '\nEnter pull or fetch to update from Github: ' && read PULLFETCH && \
+	printf '\nEnter pull or fetch to update from $(GIT_REPO): ' && read PULLFETCH && \
 	printf '\nEnter Branch Name (Press Enter For All Branches): ' && \
 	read BRANCH && git $$PULLFETCH $(GIT_REPO) $$BRANCH
 

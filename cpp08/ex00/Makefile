@@ -1,14 +1,15 @@
-# **************************************************************************** #
-#                                 Variables                                    #
-# **************************************************************************** #
+## ************************************************************************** ##
+##                               Variables                                    ##
+## ************************************************************************** ##
 
-NAME = megaphone
+NAME = fixed
 
 GIT_REPO = origin
 
-EXECUTION = ./$(NAME) + arguments
+EXECUTION = ./$(NAME)
 
-SRC = 	megaphone.cpp \
+SRC = 	Fixed.cpp \
+		main.cpp
 
 O = obj/
 I = inc/
@@ -23,9 +24,9 @@ OBJ = $(SRC:%=$O%.o)
 RM = /bin/rm -f
 RMDIR = /bin/rm -rf
 
-# **************************************************************************** #
-#                                 Compilation                                  #
-# **************************************************************************** #
+## ************************************************************************** ##
+##                               Compilation                                  ##
+## ************************************************************************** ##
 
 all: $(NAME)
 
@@ -42,11 +43,7 @@ $(NAME): $(OBJ) #Libft will compile only once, use "make libft" to recompile
 	@echo "\033[0;32mCompiling $(NAME)...\033[0m"
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 	@echo "\033[0;32m$(NAME) compiled! Execute as: $(EXECUTION)\033[0m"
-
-# **************************************************************************** #
-#                                    Cleaning                                  #
-# **************************************************************************** #
-
+	
 cleanobj: #Delete .o files in obj directory
 	@$(RM) $(wildcard $(OBJ))
 
@@ -65,28 +62,30 @@ fclean: clean #Delete objects and executable
 re: fclean #Delete all and rebuild executable
 	@make
 
-# **************************************************************************** #
-#                                 Execution                                    #
-# **************************************************************************** #
+## ************************************************************************** ##
+##                               Execution                                    ##
+## ************************************************************************** ##
+
+exe: $(NAME) #Execute program
+	@./$(NAME)
+
+exe-leak: $(NAME)
+	@valgrind --leak-check=full --track-origins=yes \
+#	--show-leak-kinds=all
+#	--trace-children=yes
+	./$(NAME)
+
+segfault: $(OBJ)
+	@$(CC) $(CFLAGS) -fsanitize=address $(OBJ) -o $(NAME)
 
 debug: $(OBJ) #Compile for debugger
 	@echo "\033[0;32mCompiling $(NAME)...\033[0m"
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 	@echo "\033[0;32m$(NAME) compiled! Execute as: $(EXECUTION)\033[0m"
 
-segfault: $(OBJ)
-	@$(CC) $(CFLAGS) -fsanitize=address $(OBJ) -o $(NAME)
-	
-exe: $(NAME) #Execute program
-	@printf '\nEntrer les paramètres à passer au programme: ' && read PARAMS && \
-	./$(NAME) $$PARAMS
-
-exe-leak: $(NAME)
-	valgrind --leak-check=full --trace-children=yes --track-origins=yes --show-leak-kinds=all ./$(NAME)
-
-# **************************************************************************** #
-#                                  Git Tools                                   #
-# **************************************************************************** #
+## ************************************************************************** ##
+##                                   Git                                      ##
+## ************************************************************************** ##
 
 gitupdate:
 	printf '\nEnter pull or fetch to update from Origin: ' && read PULLFETCH && \
@@ -119,4 +118,17 @@ gitpull: #Pull to overwrite local data if repo is different
 list: 	#Show all make rules
 	@grep '^[^#[:space:]].*:' Makefile
 
+
 .PHONY: all clean fclean re
+
+#Color Codes
+#RESET		\e[0m
+#BLACK		\e[1;30m
+#RED		\e[1;31m
+#GREEN		\e[1;32m
+#YELLOW		\e[1;33m
+#BLUE		\e[1;34m
+#MAGENTA	\e[1;35m
+#CYAN		\e[1;36m
+#WHITE		\e[1;37m
+
