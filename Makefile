@@ -81,6 +81,8 @@ SUBDIRS = $(dir $(wildcard */))
 $(SUBDIRS): FORCE
 	@Make -C $@ fclean
 
+fclean: $(SUBDIRS)
+
 FORCE:
 
 gitupdate:
