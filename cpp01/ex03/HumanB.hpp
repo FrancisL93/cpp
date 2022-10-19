@@ -3,7 +3,8 @@
 
 # include "Weapon.hpp"
 
-class HumanB {
+class HumanB
+{
 	private:
 		std::string	_name;
 		Weapon 		*_weapon;
@@ -12,7 +13,7 @@ class HumanB {
 		HumanB( void );
 		HumanB( std::string name );
 		void	attack( void );
-		void	setWeapon ( Weapon &weapon);
+		void	setWeapon( Weapon weaponType);
 
 		~HumanB( void );
 };

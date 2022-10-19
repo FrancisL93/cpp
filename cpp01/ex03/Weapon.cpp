@@ -5,7 +5,7 @@ Weapon::Weapon( void ) {
 }
 
 Weapon::Weapon( std::string newType ) {
-	this->_type = newType;
+	_type = newType;
 }
 
 Weapon::~Weapon( void ) {
