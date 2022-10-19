@@ -8,12 +8,16 @@
 class PhoneBook
 {
 	private:
+		int		_n_contacts;
+		Contact	_contact[8];
 		
 	public:
-		Contact	contact[8];
-		int		n_contacts;
 
 		void	new_contact( void );
+		Contact	get_contact( int index );
+		int		display_contacts(PhoneBook phonebook);
+		int		get_index( void );
+		void	add_index( void );
 
 		PhoneBook();
 		~PhoneBook();

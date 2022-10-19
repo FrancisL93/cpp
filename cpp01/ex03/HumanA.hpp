@@ -12,6 +12,7 @@ class HumanA {
 		void	attack( void );
 		
 		HumanA( void );
+		HumanA( std::string name );
 		~HumanA( void );
 };
 

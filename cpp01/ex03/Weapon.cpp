@@ -1,5 +1,9 @@
 #include "Weapon.hpp"
 
+Weapon::Weapon( void ) {
+	return ;
+}
+
 Weapon::Weapon( std::string newType ) {
 	this->_type = newType;
 }

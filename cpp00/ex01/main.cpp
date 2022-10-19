@@ -9,29 +9,17 @@ void	display_intro(void){
 	std::cout << "Enter EXIT to quit the PhoneBook\n\n";
 }
 
-int	display_contacts(PhoneBook phonebook) {
-	std::cout << "\n\e[1;32m     Index|First Name| Last Name|  Nickname\e[0m\n";
-	for (int index = 0; index < phonebook.n_contacts; index++) {
-		print_informations(std::to_string(index + 1));
-		std::cout << "|";
-		phonebook.contact[index].displayContact();
-	}
-	if (phonebook.n_contacts == 0) {
-		std::cout << "\e[1;31mPhoneBook is empty... Go add contacts!\e[0m\n";
-		return (1);
-	}
-	return (0);
-}
-
 int	is_index(PhoneBook phonebook, std::string input) {
 	int index;
+	Contact	contact;
 	
 	if (input.length() == 1 && std::isdigit(input[0]))
 		index = std::stoi(input);
 	else
 		return (1);
-	if (index > 0 && index <= phonebook.n_contacts) {
-		phonebook.contact[index - 1].displayContactInfo();
+	if (index > 0 && index <= phonebook.get_index()) {
+		contact = phonebook.get_contact(index - 1);
+		contact.displayContactInfo();
 		return (0);
 	}
 	else
@@ -42,7 +30,7 @@ int	is_index(PhoneBook phonebook, std::string input) {
 void	search(PhoneBook phonebook){
 	std::string	input;
 
-	if (display_contacts(phonebook))
+	if (phonebook.display_contacts(phonebook))
 		return ;
 	std::cout << "\nEnter contact's index to display contact's information (or RETURN to go back):  ";
 	std::getline(std::cin, input);
@@ -70,8 +58,8 @@ int main(int argc, char **argv)
 		while (input != "EXIT" && !std::cin.eof()) {
 			if(input == "ADD") {
 				phonebook.new_contact();
-				if (phonebook.n_contacts < 8) {	
-					phonebook.n_contacts++;
+				if (phonebook.get_index() < 8) {	
+					phonebook.add_index();
 				}
 			}
 			else if (input == "SEARCH")

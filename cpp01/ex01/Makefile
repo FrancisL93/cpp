@@ -1,5 +1,9 @@
+# **************************************************************************** #
+#                                 Variables                                    #
+# **************************************************************************** #
 
-NAME = zombies
+NAME	= zombies
+EX		= cpp01_ex01
 
 GIT_REPO = origin
 
@@ -7,7 +11,7 @@ EXECUTION = ./$(NAME)
 
 SRC = 	zombieHorde.cpp Zombie.cpp \
 		main.cpp
-
+	
 O = obj/
 I = inc/
 
@@ -20,6 +24,10 @@ OBJ = $(SRC:%=$O%.o)
 
 RM = /bin/rm -f
 RMDIR = /bin/rm -rf
+
+# **************************************************************************** #
+#                                 Compilation                                  #
+# **************************************************************************** #
 
 all: $(NAME)
 
@@ -36,7 +44,11 @@ $(NAME): $(OBJ) #Libft will compile only once, use "make libft" to recompile
 	@echo "\033[0;32mCompiling $(NAME)...\033[0m"
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 	@echo "\033[0;32m$(NAME) compiled! Execute as: $(EXECUTION)\033[0m"
-	
+
+# **************************************************************************** #
+#                                    Cleaning                                  #
+# **************************************************************************** #
+
 cleanobj: #Delete .o files in obj directory
 	@$(RM) $(wildcard $(OBJ))
 
@@ -44,16 +56,20 @@ cleanobjdir: cleanobj #Delete obj directory
 	@$(RMDIR) $O
 
 clean: cleanobjdir #Delete obj directory and content
-	@echo "\033[0;31mObjects deleted!\033[0m"
+	@echo "\033[0;31m$(EX) objects deleted!\033[0m"
 
 fclean: clean #Delete objects and executable
 	@$(RM) $(NAME)
 	@$(RM) .DS_STORE
 	@$(RMDIR) $(NAME).dSYM
-	@echo "\033[0;31mExecutable deleted!\033[0m"
+	@echo "\033[1;31m	$(NAME) executable deleted!\033[0m"
 
 re: fclean #Delete all and rebuild executable
 	@make
+
+# **************************************************************************** #
+#                                 Execution                                    #
+# **************************************************************************** #
 
 debug: $(OBJ) #Compile for debugger
 	@echo "\033[0;32mCompiling $(NAME)...\033[0m"
@@ -64,10 +80,15 @@ segfault: $(OBJ)
 	@$(CC) $(CFLAGS) -fsanitize=address $(OBJ) -o $(NAME)
 	
 exe: $(NAME) #Execute program
-	./$(NAME)
+	@printf '\nEntrer les paramètres à passer au programme: ' && read PARAMS && \
+	./$(NAME) $$PARAMS
 
 exe-leak: $(NAME)
 	valgrind --leak-check=full --trace-children=yes --track-origins=yes --show-leak-kinds=all ./$(NAME)
+
+# **************************************************************************** #
+#                                  Git Tools                                   #
+# **************************************************************************** #
 
 gitupdate:
 	printf '\nEnter pull or fetch to update from Origin: ' && read PULLFETCH && \

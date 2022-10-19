@@ -1,6 +1,6 @@
 #include "Contact.hpp"
 
-void	print_informations(std::string str) {
+void	Contact::print_informations(std::string str) {
 	int	len;
 	
 	len = str.length();
@@ -17,11 +17,11 @@ void	print_informations(std::string str) {
 }
 
 void	Contact::displayContact( void ) {
+	print_informations(_firstName);
+	std::cout << "|";
 	print_informations(_lastName);
 	std::cout << "|";
 	print_informations(_nickname);
-	std::cout << "|";
-	print_informations(_phoneNumber);
 	std::cout << "\n";
 	return ;
 }

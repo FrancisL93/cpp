@@ -2,7 +2,8 @@
 #                                 Variables                                    #
 # **************************************************************************** #
 
-NAME = phonebook
+NAME	= phonebook
+EX		= cpp00_ex01
 
 GIT_REPO = origin
 
@@ -54,13 +55,13 @@ cleanobjdir: cleanobj #Delete obj directory
 	@$(RMDIR) $O
 
 clean: cleanobjdir #Delete obj directory and content
-	@echo "\033[0;31mObjects deleted!\033[0m"
+	@echo "\033[0;31m$(EX) objects deleted!\033[0m"
 
 fclean: clean #Delete objects and executable
 	@$(RM) $(NAME)
 	@$(RM) .DS_STORE
 	@$(RMDIR) $(NAME).dSYM
-	@echo "\033[0;31mExecutable deleted!\033[0m"
+	@echo "\033[1;31m	$(NAME) executable deleted!\033[0m"
 
 re: fclean #Delete all and rebuild executable
 	@make

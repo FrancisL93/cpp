@@ -2,6 +2,7 @@
 #define CPP00_EX00_CONTACT_H
 
 #include <iostream>
+#include <iomanip>
 
 class Contact
 {
@@ -17,6 +18,7 @@ class Contact
 		void	setNickname( void );
 		void	setPhoneNumber( void );
 		void	setDarkestSecret( void );
+		void	print_informations(std::string str);
 
 		void	createContact( int index, bool full );
 		void	displayContact( void );
