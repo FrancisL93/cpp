@@ -1,5 +1,6 @@
 # include "HumanA.hpp"
 # include "HumanB.hpp"
+# include "Weapon.hpp"
 
 int	main( void ) {
 	{
@@ -7,16 +8,18 @@ int	main( void ) {
 
 		HumanA bob("bob", club);
 		bob.attack();
-		club.setType("some other type of club");
+		club.setType("Metal hammer");
 		bob.attack();
 	}
+		std::cout << std::endl;
 	{
-		Weapon club = Weapon("crude spiked club");
+		Weapon club2 = Weapon("crude spiked club");
 
 		HumanB jim("Jim");
-		jim.setWeapon(club);
 		jim.attack();
-		club.setType("some other type of club");
+		jim.setWeapon(club2);
+		jim.attack();
+		club2.setType("sword");
 		jim.attack();
 	}
 	return (0);
