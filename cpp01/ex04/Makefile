@@ -1,15 +1,16 @@
 # **************************************************************************** #
 #                                 Variables                                    #
 # **************************************************************************** #
+# Use make test to launch a test file
 
-NAME	= zombies
+NAME	= replace
 EX		= cpp01_ex04
 
 GIT_REPO = origin
 
-EXECUTION = ./$(NAME)
+EXECUTION = ./$(NAME) file_name str_find str_replace
 
-SRC = 	Weapon.cpp HumanA.cpp HumanB.cpp \
+SRC = 	 \
 		main.cpp
 
 O = obj/
@@ -43,7 +44,7 @@ $(OBJ): $O%.o: % #Build objects $< take the name on the right of ":", $@ take th
 $(NAME): $(OBJ) #Libft will compile only once, use "make libft" to recompile
 	@echo "\033[0;32mCompiling $(NAME)...\033[0m"
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-	@echo "\033[0;32m$(NAME) compiled! Execute as: $(EXECUTION)\033[0m"
+	@echo "\033[1;32m	$(NAME) compiled! Execute as: $(EXECUTION)\033[0m"
 
 # **************************************************************************** #
 #                                    Cleaning                                  #
@@ -85,6 +86,24 @@ exe: $(NAME) #Execute program
 
 exe-leak: $(NAME)
 	valgrind --leak-check=full --trace-children=yes --track-origins=yes --show-leak-kinds=all ./$(NAME)
+
+file_name = salut
+s1 = oiseau
+s2 = chien
+test: $(NAME)
+	@echo Un oiseau vole >> $(file_name)
+	@echo il arrete sur un poteau >> $(file_name)
+	@echo se fais electrocuter... par un oiseau >> $(file_name)
+	@echo oiseau >> $(file_name)
+	@cat $(file_name)
+	@echo
+	./$(NAME) $(file_name) $(s1) $(s2)
+	@echo
+	@cat $(file_name).replace
+
+rm-test:
+	rm -rf $(file_name).replace
+	rm -rf $(file_name)
 
 # **************************************************************************** #
 #                                  Git Tools                                   #
