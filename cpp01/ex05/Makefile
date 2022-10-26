@@ -61,8 +61,6 @@ clean: cleanobjdir #Delete obj directory and content
 
 fclean: clean #Delete objects and executable
 	@$(RM) $(NAME)
-	@$(RM) .DS_STORE
-	@$(RMDIR) $(NAME).dSYM
 	@echo "\033[1;31m	$(NAME) executable deleted!\033[0m"
 
 re: fclean #Delete all and rebuild executable
@@ -86,20 +84,6 @@ exe: $(NAME) #Execute program
 
 exe-leak: $(NAME)
 	valgrind --leak-check=full --trace-children=yes --track-origins=yes --show-leak-kinds=all ./$(NAME)
-
-file_name = salut
-s1 = oiseau
-s2 = chien
-test: $(NAME)
-	@echo Un oiseau vole >> $(file_name)
-	@echo il arrete sur un poteau >> $(file_name)
-	@echo se fais electrocuter... par un oiseau >> $(file_name)
-	@echo oiseau >> $(file_name)
-	@cat $(file_name)
-	@echo
-	./$(NAME) $(file_name) $(s1) $(s2)
-	@echo
-	@cat $(file_name).replace
 
 rm-test:
 	rm -rf $(file_name).replace
