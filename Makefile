@@ -91,7 +91,7 @@ gitupdate:
 	read BRANCH && git $$PULLFETCH $(GIT_REPO) $$BRANCH
 
 gitadd: $(SUBDIRS) #Clean repo before adding files to git
-	git add --all -- ':!.vscode'
+	git add *
 
 gitcommit: gitadd #Commit modifications locally before push, takes user input for commit's name
 	@printf '\nEnter Commit Name: '
