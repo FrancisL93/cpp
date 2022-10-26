@@ -1,17 +1,22 @@
+# **************************************************************************** #
+#                                 Variables                                    #
+# **************************************************************************** #
+# Use make test to launch a test file
 
-NAME = harl
+NAME	= harl
+EX		= cpp01_ex05
 
 GIT_REPO = origin
 
 EXECUTION = ./$(NAME)
 
-SRC = 	Harl.cpp \
+SRC = 	harl.cpp \
 		main.cpp
 
 O = obj/
 I = inc/
 
- CC = c++
+CC = c++
 CFLAGS += -Wall -Wextra -Werror -std=c++98
 CFLAGS += -I$I
 LDFLAGS +=
@@ -20,6 +25,10 @@ OBJ = $(SRC:%=$O%.o)
 
 RM = /bin/rm -f
 RMDIR = /bin/rm -rf
+
+# **************************************************************************** #
+#                                 Compilation                                  #
+# **************************************************************************** #
 
 all: $(NAME)
 
@@ -35,8 +44,12 @@ $(OBJ): $O%.o: % #Build objects $< take the name on the right of ":", $@ take th
 $(NAME): $(OBJ) #Libft will compile only once, use "make libft" to recompile
 	@echo "\033[0;32mCompiling $(NAME)...\033[0m"
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-	@echo "\033[0;32m$(NAME) compiled! Execute as: $(EXECUTION)\033[0m"
-	
+	@echo "\033[1;32m	$(NAME) compiled! Execute as: $(EXECUTION)\033[0m"
+
+# **************************************************************************** #
+#                                    Cleaning                                  #
+# **************************************************************************** #
+
 cleanobj: #Delete .o files in obj directory
 	@$(RM) $(wildcard $(OBJ))
 
@@ -44,16 +57,20 @@ cleanobjdir: cleanobj #Delete obj directory
 	@$(RMDIR) $O
 
 clean: cleanobjdir #Delete obj directory and content
-	@echo "\033[0;31mObjects deleted!\033[0m"
+	@echo "\033[0;31m$(EX) objects deleted!\033[0m"
 
 fclean: clean #Delete objects and executable
 	@$(RM) $(NAME)
 	@$(RM) .DS_STORE
 	@$(RMDIR) $(NAME).dSYM
-	@echo "\033[0;31mExecutable deleted!\033[0m"
+	@echo "\033[1;31m	$(NAME) executable deleted!\033[0m"
 
 re: fclean #Delete all and rebuild executable
 	@make
+
+# **************************************************************************** #
+#                                 Execution                                    #
+# **************************************************************************** #
 
 debug: $(OBJ) #Compile for debugger
 	@echo "\033[0;32mCompiling $(NAME)...\033[0m"
@@ -64,10 +81,33 @@ segfault: $(OBJ)
 	@$(CC) $(CFLAGS) -fsanitize=address $(OBJ) -o $(NAME)
 	
 exe: $(NAME) #Execute program
-	./$(NAME)
+	@printf '\nEntrer les paramètres à passer au programme: ' && read PARAMS && \
+	./$(NAME) $$PARAMS
 
 exe-leak: $(NAME)
 	valgrind --leak-check=full --trace-children=yes --track-origins=yes --show-leak-kinds=all ./$(NAME)
+
+file_name = salut
+s1 = oiseau
+s2 = chien
+test: $(NAME)
+	@echo Un oiseau vole >> $(file_name)
+	@echo il arrete sur un poteau >> $(file_name)
+	@echo se fais electrocuter... par un oiseau >> $(file_name)
+	@echo oiseau >> $(file_name)
+	@cat $(file_name)
+	@echo
+	./$(NAME) $(file_name) $(s1) $(s2)
+	@echo
+	@cat $(file_name).replace
+
+rm-test:
+	rm -rf $(file_name).replace
+	rm -rf $(file_name)
+
+# **************************************************************************** #
+#                                  Git Tools                                   #
+# **************************************************************************** #
 
 gitupdate:
 	printf '\nEnter pull or fetch to update from Origin: ' && read PULLFETCH && \
