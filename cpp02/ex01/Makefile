@@ -2,7 +2,8 @@
 ##                               Variables                                    ##
 ## ************************************************************************** ##
 
-NAME = fixed
+NAME	= fixed
+EX		= cpp02_ex01
 
 GIT_REPO = origin
 
@@ -42,7 +43,7 @@ $(OBJ): $O%.o: % #Build objects $< take the name on the right of ":", $@ take th
 $(NAME): $(OBJ) #Libft will compile only once, use "make libft" to recompile
 	@echo "\033[0;32mCompiling $(NAME)...\033[0m"
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-	@echo "\033[0;32m$(NAME) compiled! Execute as: $(EXECUTION)\033[0m"
+	@echo "\033[1;32m$(EX) \033[0;32m$(NAME) compiled! Execute as: $(EXECUTION)\033[0m"
 	
 cleanobj: #Delete .o files in obj directory
 	@$(RM) $(wildcard $(OBJ))
@@ -57,7 +58,7 @@ fclean: clean #Delete objects and executable
 	@$(RM) $(NAME)
 	@$(RM) .DS_STORE
 	@$(RMDIR) $(NAME).dSYM
-	@echo "\033[0;31mExecutable deleted!\033[0m"
+	@echo "\033[1;31m$(EX) \033[0;31m$(NAME) executable deleted!\033[0m"
 
 re: fclean #Delete all and rebuild executable
 	@make

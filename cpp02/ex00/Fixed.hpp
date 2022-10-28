@@ -3,11 +3,13 @@
 
 #include <iostream>
 
-class Fixed
+class Fixed final
 {
 	public:
-	Fixed( void );
-	~Fixed( void );
+		Fixed ( void );
+		Fixed (const Fixed &fixed );
+		~Fixed ( void );
+		Fixed & operator = (const Fixed &fixed);
 
 	private:
 
