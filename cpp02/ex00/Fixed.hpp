@@ -3,16 +3,20 @@
 
 #include <iostream>
 
-class Fixed final
+class Fixed
 {
 	public:
+		void	setRawBits( int const raw );
+		int		getRawBits( void ) const;
+
 		Fixed ( void );
 		Fixed (const Fixed &fixed );
-		~Fixed ( void );
+		virtual ~Fixed ( void );
 		Fixed & operator = (const Fixed &fixed);
 
 	private:
-
+		int					_fixed_point_number;
+		static const int	_n_fractional_bits = 8;
 };
 
 #endif
