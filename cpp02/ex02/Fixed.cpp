@@ -42,22 +42,6 @@ float	Fixed::toFloat( void ) const {
 	return ((float) this->_fixed_point_number / pow(2, this->_n_fractional_bits));
 }
 
-Fixed		&Fixed::min(Fixed &fixed1, Fixed &fixed2) {
-
-}
-
-Fixed		&Fixed::max(Fixed &fixed1, Fixed &fixed2) {
-
-}
-
-const Fixed	&Fixed::min(const Fixed &fixed1, const Fixed &fixed2) {
-
-}
-
-const Fixed	&Fixed::max(const Fixed &fixed1, const Fixed &fixed2) {
-
-}
-
 //Assignment operator overload
 
 Fixed &Fixed::operator=(const Fixed& fixed) {
@@ -65,68 +49,6 @@ Fixed &Fixed::operator=(const Fixed& fixed) {
 	if (this != &fixed)
 		this->_fixed_point_number = fixed._fixed_point_number;
 	return (*this);
-}
-
-//		comparison operators
-
-bool	Fixed::operator < (const Fixed &fixed) const {
-
-}
-
-bool	Fixed::operator <= (const Fixed &fixed) const {
-
-}
-
-bool	Fixed::operator > (const Fixed &fixed) const {
-
-}
-
-bool	Fixed::operator >= (const Fixed &fixed) const {
-
-}
-
-bool	Fixed::operator == (const Fixed &fixed) const {
-
-}
-
-bool	Fixed::operator != (const Fixed &fixed) const {
-
-}
-
-//		arithmetic operators
-
-Fixed	&Fixed::operator + (const Fixed &fixed) const {
-
-}
-
-Fixed	&Fixed::operator - (const Fixed &fixed) const {
-
-}
-
-Fixed	&Fixed::operator * (const Fixed &fixed) const {
-
-}
-
-Fixed	&Fixed::operator / (const Fixed &fixed) const {
-
-}
-
-//		increment / decrement
-
-Fixed	&Fixed::operator ++ ( void ) {
-
-}
-
-Fixed	&Fixed::operator -- ( void ) {
-
-}
-
-Fixed	Fixed::operator ++ ( int ) {
-
-}
-
-Fixed	Fixed::operator -- ( int ) {
-
 }
 
 //Deconstructor
