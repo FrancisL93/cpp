@@ -99,7 +99,7 @@ gitcommit: gitadd #Commit modifications locally before push, takes user input fo
 
 gitpush: gitcommit #Push commit to remote repo
 	@printf '\nEnter Branch To Push (Press Enter For ALL): '
-	@read PUSH && git push $(GIT_REPO) $$PUSH
+	@read PUSH && git push --set-upstream $(GIT_REPO) $$PUSH
 
 # gitmerge: #Merge specific branch to current branch
 # 	@printf '\nEnter Branch To Merge With (Press Enter To Merge ALL): '
