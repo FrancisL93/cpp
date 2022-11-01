@@ -69,7 +69,7 @@ Fixed	Fixed::operator++ ( int ) {Fixed old(*this); ++(*this); return (old);}
 Fixed	Fixed::operator-- ( int ) {Fixed old(*this); --(*this); return (old);}
 
 //Deconstructor
-Fixed::~Fixed( void ) {std::cout << "Destructor called" << std::endl;}
+Fixed::~Fixed( void ) {std::cout << "Destructor called" << std::endl; return ;}
 
 //Outside functions
 std::ostream	&operator<<(std::ostream &ostream, const Fixed &fixed) {
