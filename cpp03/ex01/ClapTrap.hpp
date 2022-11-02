@@ -1,5 +1,5 @@
-#ifndef CPP03_EX00_CLAPTRAP_HPP
-# define CPP03_EX00_CLAPTRAP_HPP
+#ifndef CPP03_EX01_CLAPTRAP_HPP
+# define CPP03_EX01_CLAPTRAP_HPP
 
 # include <iostream>
 
@@ -11,6 +11,15 @@ class ClapTrap {
 		unsigned int	_attack_damage;
 
 	public:
+		void	setHitPoints( unsigned int value );
+		void	setEnergyPoints( unsigned int value );
+		void	setAttackDamage( unsigned int value );
+
+		std::string	getName( void );
+		int		getHitPoints( void );
+		int		getEnergyPoints( void );
+		int		getAttackDamage( void );
+
 		void	modifyDamage( int dmg_variation );
 		void	attack( const std::string& target );
 		void	takeDamage( unsigned int amount );
