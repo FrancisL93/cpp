@@ -2,14 +2,14 @@
 ##                               Variables                                    ##
 ## ************************************************************************** ##
 
-NAME	= fixed
+NAME	= diamondtrap
 EX		= cpp03_ex03
 
 GIT_REPO = origin
 
 EXECUTION = ./$(NAME)
 
-SRC = 	Fixed.cpp \
+SRC =   ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp\
 		main.cpp
 
 O = obj/

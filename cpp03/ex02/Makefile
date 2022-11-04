@@ -2,14 +2,14 @@
 ##                               Variables                                    ##
 ## ************************************************************************** ##
 
-NAME	= fixed
+NAME	= fragtrap
 EX		= cpp03_ex02
 
 GIT_REPO = origin
 
 EXECUTION = ./$(NAME)
 
-SRC = 	Fixed.cpp \
+SRC =   ClapTrap.cpp ScavTrap.cpp FragTrap.cpp\
 		main.cpp
 
 O = obj/

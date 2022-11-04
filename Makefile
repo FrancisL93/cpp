@@ -76,7 +76,7 @@
 
 GIT_REPO = github
 
-SUBDIRS = $(dir $(wildcard */))
+SUBDIRS = $(wildcard */)
 
 $(SUBDIRS): FORCE
 	@Make -C $@ fclean

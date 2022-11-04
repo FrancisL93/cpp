@@ -80,7 +80,6 @@ SUBDIRS = $(wildcard */)
 
 $(SUBDIRS): FORCE
 	@Make -C $@ fclean
-	@$(RM) .DS_STORE
 
 fclean: $(SUBDIRS)
 
