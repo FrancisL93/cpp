@@ -11,6 +11,7 @@ class DiamondTrap: public ScavTrap, public FragTrap {
 
 	public:
 		using	ScavTrap::attack;
+		void	whoAmI( void );
 
 		DiamondTrap( std::string name );
 		~DiamondTrap( void );

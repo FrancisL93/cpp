@@ -21,5 +21,10 @@ int	main(void) {
 	pizza.attack("no one");
 	std::cout << " vs ";
 	dog.attack("no one");
+	pizza.highFivesGuys();
+	pizza.guardGate();
+	std::cout << std::endl;
+	pizza.whoAmI();
+
 	std::cout << std::endl << "These are the destructors" << std::endl;
 	return (0);} 
