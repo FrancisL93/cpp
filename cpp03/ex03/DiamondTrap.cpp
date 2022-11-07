@@ -9,7 +9,7 @@ DiamondTrap::DiamondTrap( std::string name ) : ClapTrap(name + "_clap_name"), Sc
 	std::cout << "DiamondTrap constructed" << std::endl;
 	return ;}
 
-// member functions
+// Member functions
 void	DiamondTrap::whoAmI( void ) {
 	std::cout << "My name is " << this->_name << 
 	" and my claptrap name is " << ClapTrap::getName() << std::endl; 
