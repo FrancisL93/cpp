@@ -1,5 +1,5 @@
-#ifndef CPP04_EX00_ANIMAL_HPP
-# define CPP04_EX00_ANIMAL_HPP
+#ifndef CPP04_EX01_ANIMAL_HPP
+# define CPP04_EX01_ANIMAL_HPP
 
 # include <iostream>
 
@@ -20,6 +20,7 @@ class	Animal {
 		Animal & operator=(Animal const & rhs);
 	//Constructors
 		Animal();
+		Animal(Animal &animal);
 		Animal( std::string type );
 	//Destructors
 		virtual ~Animal();

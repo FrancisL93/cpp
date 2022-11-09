@@ -9,7 +9,7 @@ GIT_REPO = origin
 
 EXECUTION = ./$(NAME)
 
-SRC = 	Animal.cpp Dog.cpp Cat.cpp\
+SRC = 	Animal.cpp Dog.cpp Cat.cpp WrongDog.cpp WrongCat.cpp \
 		main.cpp
 
 O = obj/
