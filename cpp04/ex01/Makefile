@@ -123,7 +123,6 @@ gitpull: #Pull to overwrite local data if repo is different
 list: 	#Show all make rules
 	@grep '^[^#[:space:]].*:' Makefile
 
-
 .PHONY: all clean fclean re
 
 #Color Codes
@@ -136,4 +135,3 @@ list: 	#Show all make rules
 #MAGENTA	\e[1;35m
 #CYAN		\e[1;36m
 #WHITE		\e[1;37m
-
