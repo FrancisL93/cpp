@@ -4,18 +4,11 @@
 //                              Constructors                                //
 //**************************************************************************//
 
-Animal::Animal(): _type("") {
-	std::cout << "Animal constructed" << std::endl;}
-
-Animal::Animal( std::string type ): _type(type) {
-	std::cout << "Animal " << this->_type << " constructed" << std::endl;}
-
-Animal::Animal(Animal &animal) {
-	this->_type = animal._type;}
-
 //**************************************************************************//
 //                                 Setters                                  //
 //**************************************************************************//
+
+void	Animal::setType( std::string type ) {this->_type = type;}
 
 //**************************************************************************//
 //                                 Getters                                  //
@@ -27,20 +20,10 @@ std::string	Animal::getType() const {return (this->_type);}
 //                             Member functions                             //
 //**************************************************************************//
 
-void	Animal::makeSound() const {
-	std::cout << "I'm a speaking animal" << std::endl;}
-
 //**************************************************************************//
 //                           Operators overload                             //
 //**************************************************************************//
 
-Animal & Animal::operator=(Animal const & rhs) {
-	this->_type = rhs._type;
-	return (*this);}
-
 //**************************************************************************//
 //                               Destructors                                //
 //**************************************************************************//
-
-Animal::~Animal() {
-	std::cout << "Animal " << this->_type << " destructed" << std::endl;}

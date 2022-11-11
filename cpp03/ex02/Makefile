@@ -9,7 +9,7 @@ GIT_REPO = origin
 
 EXECUTION = ./$(NAME)
 
-SRC =   ClapTrap.cpp ScavTrap.cpp FragTrap.cpp\
+SRC = 	ScavTrap.cpp ClapTrap.cpp \
 		main.cpp
 
 O = obj/

@@ -3,10 +3,9 @@
 #include "Cat.hpp"
 
 int	main( void ) {
-	Animal *tmp;
-	Animal *tmp;
-	Animal tmp2;
+	Cat ponyo;
+	Dog poto;
 
-	tmp = new Animal();
-	return 0;
-}
+	poto.makeSound();
+	ponyo.makeSound();
+	return 0;}

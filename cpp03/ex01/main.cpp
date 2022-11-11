@@ -2,20 +2,13 @@
 #include "ScavTrap.hpp"
 
 int	main(void) {
-	ClapTrap monkey("Johnny");
 	ScavTrap dog("Pong");
 	
-	monkey.attack("Himself");
-	monkey.beRepaired(10);
-	monkey.modifyDamage(2);
-	dog.beRepaired(20);
-	monkey.attack("Another one");
-	monkey.modifyDamage(-4);
-	monkey.attack("Another one");
 	std::cout << std::endl;
-	dog.attack("monkey");
-	dog.modifyDamage(10);
-	dog.attack("dog");
+	std::cout << "Name: " << dog.getName() << std::endl;
+	std::cout << "Hit points: " << dog.getHitPoints() << std::endl;
+	std::cout << "Energy: " << dog.getEnergyPoints() << std::endl;
+	std::cout << "Attack damage: " << dog.getAttackDamage() << std::endl << std::endl;
 	dog.guardGate();
 
 	// monkey.takeDamage(30);

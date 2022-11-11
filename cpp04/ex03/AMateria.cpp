@@ -1,18 +1,14 @@
-#include "Cat.hpp"
+#include "AMateria.hpp"
 
 //**************************************************************************//
 //                              Constructors                                //
 //**************************************************************************//
 
-Cat::Cat() {
-	_brain = new Brain();
-	std::cout << "Cat constructed" << std::endl;}
+AMateria::AMateria(/* args */){
+	}
 
-Cat::Cat(Cat &cat) {
-	_brain = new Brain();
-	*_brain = *cat._brain;
-	_type = cat._type;
-	std::cout << "Cat constructed" << std::endl;}
+
+
 
 //**************************************************************************//
 //                                 Setters                                  //
@@ -26,20 +22,14 @@ Cat::Cat(Cat &cat) {
 //                             Member functions                             //
 //**************************************************************************//
 
-void	Cat::makeSound() const {std::cout << "Miawwww" << std::endl;}
-
 //**************************************************************************//
 //                           Operators overload                             //
 //**************************************************************************//
 
-Cat & Cat::operator=(Cat const & rhs) {
-	this->_type = rhs._type;
-	return (*this);}
-
 //**************************************************************************//
 //                               Destructors                                //
 //**************************************************************************//
-
-Cat::~Cat() {
-	delete _brain;
-	std::cout << "Cat destructed" << std::endl;}
+	
+AMateria::~AMateria()
+	{
+	}

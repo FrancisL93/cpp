@@ -10,16 +10,15 @@ class	Dog: public Animal {
 	protected:
 
 	public:
-		//Member functions
-		virtual void	makeSound() const;
-		//Operators overload
+	//Member functions
+		void	makeSound() const;
+	//Operators overload
 		Dog & operator=(Dog const & rhs);
-		//Constructors
+	//Constructors
 		Dog();
 		Dog(Dog &dog);
-		//Destructors
+	//Destructors
 		~Dog();
-
 };
 
 #endif

@@ -8,22 +8,17 @@ class	Animal {
 
 	protected: 
 		std::string	_type;
-	//Constructors
-		Animal();
-		Animal(Animal &animal);
-		Animal( std::string type );
 
 	public:
 	//Setters
-
+		void	setType( std::string type );
 	//Getters
 		std::string getType() const;
 	//Member functions
-		virtual void	makeSound() const;
+
 	//Operators overload
-		Animal & operator=(Animal const & rhs);
+	
 	//Destructors
-		virtual ~Animal();
 };
 
 #endif
