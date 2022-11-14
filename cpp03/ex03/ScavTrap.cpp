@@ -1,56 +1,56 @@
-#include "FragTrap.hpp"
+#include "ScavTrap.hpp"
 
 //**************************************************************************//
 //                              Constructors                                //
 //**************************************************************************//
 
-FragTrap::FragTrap( std::string name ) : ClapTrap( name ) {
+ScavTrap::ScavTrap( std::string name ) : ClapTrap( name ) {
 	_name = name;
 	_hitPoints = 100;
-	_energyPoints = 100;
-	_attackDamage = 30;
-	std::cout << "FragTrap " << this->_name << " constructed" << std::endl;}
+	_energyPoints = 50;
+	_attackDamage = 20;
+	std::cout << "ScavTrap constructed" << std::endl;}
 
-FragTrap::FragTrap( const FragTrap &fragtrap) : ClapTrap(fragtrap) {
-	_name = fragtrap._name;
-	_hitPoints = fragtrap._hitPoints;
-	_energyPoints = fragtrap._energyPoints;
-	_attackDamage = fragtrap._attackDamage;
-	*this = fragtrap;
-	std::cout << "FragTrap copy constructor called" << std::endl;}
+ScavTrap::ScavTrap( const ScavTrap &scavtrap) : ClapTrap(scavtrap) {
+	_name = scavtrap._name;
+	_hitPoints = scavtrap._hitPoints;
+	_energyPoints = scavtrap._energyPoints;
+	_attackDamage = scavtrap._attackDamage;
+	*this = scavtrap;
+	std::cout << "Copy constructor called" << std::endl;}
 
 //**************************************************************************//
 //                             Member functions                             //
 //**************************************************************************//
 
-void	FragTrap::attack( const std::string& target ) {
+void	ScavTrap::attack( const std::string& target ) {
 	if (!this->_hitPoints) {std::cout << this->_name << " is dead..." << std::endl; return ;}
 	if (!this->_energyPoints) {std::cout << "Not enough energy..." << std::endl; return ;}
-	std::cout << this->_name << " attacks " << target << " without passion, causing " << this->_attackDamage \
+	std::cout << this->_name << " attacks " << target << " with passion, causing " << this->_attackDamage \
 	<< " points of damage!" << std::endl;
 	this->_energyPoints -= 1; return ;}
 
-void	FragTrap::highFivesGuys(void) {
-	std::cout << this->_name << " request a positive high fives on the stantard output..." << std::endl;
-}
-
+void	ScavTrap::guardGate( void ) {
+	std::cout << this->getName() << " is now in Gate keeper mode! (Beware...)"
+		<< std::endl;}
+	
 //**************************************************************************//
 //                           Operators overload                             //
 //**************************************************************************//
 
-FragTrap &FragTrap::operator=(const FragTrap &fragtrap) {
-		if (this != &fragtrap) {
-		this->_name = fragtrap._name;
-		this->_hitPoints = fragtrap._hitPoints;
-		this->_attackDamage = fragtrap._attackDamage;
-		this->_energyPoints = fragtrap._energyPoints;}
-	std::cout << "FragTrap copy assignement operator called" << std::endl;
+ScavTrap &ScavTrap::operator=(const ScavTrap& scavtrap) {
+		if (this != &scavtrap) {
+		this->_name = scavtrap._name;
+		this->_hitPoints = scavtrap._hitPoints;
+		this->_attackDamage = scavtrap._attackDamage;
+		this->_energyPoints = scavtrap._energyPoints;}
+	std::cout << "ScavTrap copy assignement operator called" << std::endl;
 	return (*this);}
 
 //**************************************************************************//
 //                               Destructors                                //
 //**************************************************************************//
 
-FragTrap::~FragTrap( void ) {
-	std::cout << "FragTrap " << this->_name << " destroyed" << std::endl;
+ScavTrap::~ScavTrap( void ) {
+	std::cout << "ScavTrap destroyed" << std::endl;
 	return ;}

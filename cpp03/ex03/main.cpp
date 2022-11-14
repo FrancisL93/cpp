@@ -1,9 +1,10 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int	main(void) {
-	FragTrap dog("Pong");
+	DiamondTrap dog("Pong");
 	
 	std::cout << std::endl;
 	std::cout << "Name: " << dog.getName() << std::endl;
