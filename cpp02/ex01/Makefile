@@ -1,29 +1,35 @@
 ## ************************************************************************** ##
+##                                 Includes                                   ##
+## ************************************************************************** ##
+
+include include/settings.mk
+
+## ************************************************************************** ##
 ##                               Variables                                    ##
 ## ************************************************************************** ##
 
-NAME	= fixed
-EX		= cpp02_ex01
-
-GIT_REPO = origin
-
-EXECUTION = ./$(NAME)
-
-SRC = 	Fixed.cpp \
-		main.cpp
-
-O = obj/
-I = inc/
-
-CC = c++
-CFLAGS += -Wall -Wextra -Werror -std=c++98
-CFLAGS += -I$I
-LDFLAGS +=
+EXECUTION = ./$(NAME) $(ARG)
+#EXECUTION_B = ./$(BONUS) $(ARG)
 
 OBJ = $(SRC:%=$O%.o)
+#OBJ_BONUS = $(SRC_BONUS:%=$B%.o)
 
-RM = /bin/rm -f
-RMDIR = /bin/rm -rf
+#Folders
+B = obj_bonus/
+O = obj/
+S = src/
+I = include/
+
+CC ?=	gcc
+CFLAGS	+= -Wall -Wextra -Werror
+CFLAGS	+= -I$I
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
+CXXFLAGS	+= -I$I
+DEBUG	= -g
+SFLAGS	= -fsanitize=address
+
+OBJ = $(SRC:%=$O%.o)
+#OBJ_BONUS = $(SRC_BONUS:%=$B%.o)
 
 ## ************************************************************************** ##
 ##                               Compilation                                  ##
@@ -31,98 +37,103 @@ RMDIR = /bin/rm -rf
 
 all: $(NAME)
 
-$O: #Create obj directory
+$O:
 	@mkdir $@
-	@echo "\033[0;32mGenerating objects...\033[0m"
+	@echo "\033[0;32mCompiling $(NAME)...\033[0m"
 
 $(OBJ): | $O
 
-$(OBJ): $O%.o: % #Build objects $< take the name on the right of ":", $@ take the name on the left of ":"
-	@$(CC) $(CFLAGS) -c $< -o $@
-	
-$(NAME): $(OBJ) #Libft will compile only once, use "make libft" to recompile
-	@echo "\033[0;32mCompiling...\033[0m"
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-	@echo "\033[1;32m$(EX)\033[0;32m compiled! Execute as: $(EXECUTION)\033[0m"
+$(OBJ): $O%.o: $S%
+	@$(CC) $(FLAGS) -c $< -o $@
+
+$(NAME): $(LIBS) $(OBJ)
+	@$(CC) $(FLAGS) $(OBJ) $(LDFLAGS) $(LIBS) -o $(NAME)
+	@echo "\033[0;32mCompiled! Execute as: $(EXECUTION)\033[0m"
+
+## ************************************************************************** ##
+##                             Bonus compilation                              ##
+## ************************************************************************** ##
+
+#$B:
+#	@mkdir $@
+#	@echo "\033[0;32mCompiling $(BONUS)...\033[0m"
+
+#$(OBJ_BONUS): | $B
+
+#$(OBJ_BONUS): $B%.o: $S%
+##	@$(CC) $(CFLAGS) -c $< -o $@
+
+#$(BONUS): bonus
+
+#bonus: $(LIBS) $(OBJ_BONUS)
+#	@$(CC) $(FLAGS) $(OBJ_BONUS) $(LDFLAGS) $(LIBS) -o $(BONUS)
+#	@echo "\033[0;32mCompiled! Execute as: ./$(EXECUTION_B)\033[0m"
 
 ## ************************************************************************** ##
 ##                                 Cleaning                                   ##
 ## ************************************************************************** ##
 
-cleanobj: #Delete .o files in obj directory
+RM = /bin/rm -f
+RMDIR = /bin/rm -rf
+ 
+cleanobj:
 	@$(RM) $(wildcard $(OBJ))
+#	@$(RM) $(wildcard $(OBJ_BONUS))
 
-cleanobjdir: cleanobj #Delete obj directory
+cleanobjdir: cleanobj
 	@$(RMDIR) $O
+#	@$(RMDIR) $B
 
-clean: cleanobjdir #Delete obj directory and content
+clean: cleanobjdir
 	@echo "\033[0;31mObjects deleted!\033[0m"
 
 fclean: clean #Delete objects and executable
 	@$(RM) $(NAME)
-	@$(RM) .DS_STORE
-	@$(RMDIR) $(NAME).dSYM
-	@echo "\033[1;31m$(EX)\033[0;31m executable deleted!\033[0m"
+#	@$(RM) $(BONUS)
+	@echo "\033[0;31mExecutable deleted!\033[0m"
 
-re: fclean #Delete all and rebuild executable
+re: fclean
 	@make
 
 ## ************************************************************************** ##
 ##                               Execution                                    ##
 ## ************************************************************************** ##
 
-exe: $(NAME) #Execute program
-	@./$(NAME)
+exe: $(NAME)
+	@./$(NAME) $(ARG)
+
+exe-bonus: $(BONUS)
+	@./$(BONUS) $(ARG)
 
 exe-leak: $(NAME)
-	@valgrind --leak-check=full --track-origins=yes \
-#	--show-leak-kinds=all
+	@leaks --atExit -- ./$(NAME) $(ARG)
+exe-bleak: $(BONUS)
+	@leaks --atExit -- ./$(BONUS) $(ARG)
+#	@valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) $(MAP)
 #	--trace-children=yes
-	./$(NAME)
 
-segfault: $(OBJ)
-	@$(CC) $(CFLAGS) -fsanitize=address $(OBJ) -o $(NAME)
+segf: $(LIBS) $(OBJ)
+	@$(CC) $(FLAGS) $(SFLAGS) $(OBJ) $(LDFLAGS) $(LIBS) -o $(NAME)
+	@echo "\033[0;32mCompiled with segfault flag! Execute as: $(EXECUTION)\033[0m"
+segf-bonus: $(LIBS) $(OBJ_BONUS)
+	@$(CC) $(FLAGS) $(SFLAGS) $(OBJ_BONUS) $(LDFLAGS) $(LIBS) -o $(BONUS)
+	@echo "\033[0;32mCompiled with segfault flag! Execute as: $(EXECUTION_B)\033[0m"
+#-fsanitize=threads (compiler les objets aussi avec)
 
-debug: $(OBJ) #Compile for debugger
-	@echo "\033[0;32mCompiling $(NAME)...\033[0m"
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-	@echo "\033[0;32m$(NAME) compiled! Execute as: $(EXECUTION)\033[0m"
-
-## ************************************************************************** ##
-##                                   Git                                      ##
-## ************************************************************************** ##
-
-gitupdate:
-	printf '\nEnter pull or fetch to update from Origin: ' && read PULLFETCH && \
-	printf '\nEnter Branch Name (Press Enter For All Branches): ' && \
-	read BRANCH && git $$PULLFETCH origin $$BRANCH
-
-gitadd: fclean #Clean repo before adding files to git
-	git add *
-
-gitcommit: gitadd #Commit modifications locally before push, takes user input for commit's name
-	@printf '\nEnter Commit Name: '
-	@read COMMIT && git commit -m $$COMMIT
-
-gitpush: gitcommit #Push commit to remote repo
-	@printf '\nEnter Branch To Push (Press Enter For ALL): '
-	@read PUSH && git push $(GIT_REPO) $$PUSH
-
-gitmerge: #Merge specific branch to current branch
-	@printf '\nEnter Branch To Merge With (Press Enter To Merge ALL): '
-	@read MERGE && git merge $$MERGE && git merge $$MERGE
-
-gitfetch: #Fetch to update branches without merging with local repo
-	@printf '\nEnter Branch To Fetch (Press Enter For All Branches): '
-	@read FETCH && git fetch $(GIT_REPO) $$FETCH
-	
-gitpull: #Pull to overwrite local data if repo is different
-	@printf '\nEnter Branch To Pull (Press Enter For All Branches): '
-	@read PULL && git pull $(GIT_REPO) $$FETCH
+debug: $(LIBS) $(OBJ) #Compile for debugger
+	@$(CC) $(FLAGS) $(DEBUG) $(OBJ) $(LDFLAGS) $(LIBS) -o $(NAME)
+	@echo "\033[0;32mCompiled with -g for debug! Execute as: $(EXECUTION)\033[0m"
+debug-b: $(LIBS) $(OBJ_BONUS) #Compile for debugger
+	@$(CC) $(FLAGS) $(DEBUG) $(OBJ_BONUS) $(LDFLAGS) $(LIBS) -o $(NAME)
+	@echo "\033[0;32mCompiled with -g for debug! Execute as: $(EXECUTION_B)\033[0m"
 
 list: 	#Show all make rules
 	@grep '^[^#[:space:]].*:' Makefile
 
+norm:	#norminette on all necessary files
+	@norminette src/
+	@norminette include/libft
+	@norminette include/cub3d.h
 
 .PHONY: all clean fclean re
 
