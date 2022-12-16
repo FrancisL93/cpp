@@ -24,12 +24,12 @@ public:
 	void	setRawBits( int const raw );
 	int		getRawBits( void ) const;
 //Other functions
-		int		toInt( void ) const;
-		float	toFloat( void ) const;
+	int		toInt( void ) const;
+	float	toFloat( void ) const;
 
-	private:
-		int					_fixed_point_number;
-		static const int	_n_fractional_bits = 8;
+private:
+	int					_fixed_point_number;
+	static const int	_n_fractional_bits = 8;
 };
 
 std::ostream	&operator<<(std::ostream &ostream, const Fixed &fixed);
