@@ -12,10 +12,10 @@ ClapTrap::ClapTrap(std::string name): _name(name), _hitPoints(10), \
 _energyPoints(10), _attackDamage(0){std::cout << "Construction" << std::endl;}
 
 ClapTrap::ClapTrap(const ClapTrap &copy) : _name(copy._name), \
-_hitPoints(copy._hitPoints), _energyPoints(copy._energyPoints), \
-_attackDamage(copy._attackDamage)
-{std::cout << "Copy construction" << std::endl;
-*this = copy;}
+	_hitPoints(copy._hitPoints), _energyPoints(copy._energyPoints), \
+	_attackDamage(copy._attackDamage)
+	{std::cout << "Copy construction" << std::endl;
+	*this = copy;}
 
 //**************************************************************************//
 //                                 Setters                                  //
@@ -24,6 +24,11 @@ _attackDamage(copy._attackDamage)
 //**************************************************************************//
 //                                 Getters                                  //
 //**************************************************************************//
+
+	std::string		ClapTrap::getName() {return (this->_name);}
+	unsigned int	ClapTrap::getHitPoints() {return (this->_hitPoints);}
+	unsigned int	ClapTrap::getEnergyPoints() {return (this->_energyPoints);}
+	unsigned int	ClapTrap::getAttackDamage() {return (this->_attackDamage);}
 
 //**************************************************************************//
 //                             Member functions                             //
