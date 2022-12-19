@@ -1,17 +1,16 @@
-#include "Animal.hpp"
+#include "Brain.hpp"
 
 //**************************************************************************//
 //                              Constructors                                //
 //**************************************************************************//
 
-Animal::Animal(): _type("") {
-	std::cout << "Animal constructed" << std::endl;}
+Brain::Brain(void) 
+	{std::cout << "Brain default construction" << std::endl;}
 
-Animal::Animal( std::string type ): _type(type) {
-	std::cout << "Animal " << this->_type << " constructed" << std::endl;}
-
-Animal::Animal(Animal &animal) {
-	this->_type = animal._type;}
+Brain::Brain(const Brain &copy)
+	{std::copy(copy._ideas, copy._ideas + 100, _ideas);
+	std::cout << "Brain copy construction" << std::endl;
+	*this = copy;}
 
 //**************************************************************************//
 //                                 Setters                                  //
@@ -21,26 +20,21 @@ Animal::Animal(Animal &animal) {
 //                                 Getters                                  //
 //**************************************************************************//
 
-std::string	Animal::getType() const {return (this->_type);}
-
 //**************************************************************************//
 //                             Member functions                             //
 //**************************************************************************//
-
-void	Animal::makeSound() const {
-	std::cout << "I'm a speaking animal" << std::endl;}
 
 //**************************************************************************//
 //                           Operators overload                             //
 //**************************************************************************//
 
-Animal & Animal::operator=(Animal const & rhs) {
-	this->_type = rhs._type;
+Brain	&Brain::operator=(const Brain &copy){ 
+	if (this != &copy){
+		std::copy(copy._ideas, copy._ideas + 100, _ideas);}
 	return (*this);}
 
 //**************************************************************************//
 //                               Destructors                                //
 //**************************************************************************//
 
-Animal::~Animal() {
-	std::cout << "Animal " << this->_type << " destructed" << std::endl;}
+Brain::~Brain(void) {std::cout << "Brain destruction" << std::endl;}

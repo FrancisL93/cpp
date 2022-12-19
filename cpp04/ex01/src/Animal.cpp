@@ -1,45 +1,46 @@
-#include "Dog.hpp"
+#include "Animal.hpp"
 
 //**************************************************************************//
 //                              Constructors                                //
 //**************************************************************************//
 
-Dog::Dog(): Animal("Dog") {
-	_brain = new Brain();
-	std::cout << "Dog constructed" << std::endl;}
+Animal::Animal(void) : _type("")
+	{std::cout << "Animal default construction" << std::endl;}
 
-Dog::Dog(Dog &dog) {
-	_brain = new Brain();
-	*_brain = *(dog._brain);
-	_type = dog._type;}
+Animal::Animal(std::string type) : _type(type)
+	{std::cout << "Animal construction" << std::endl;}
+
+Animal::Animal(const Animal &copy) : _type(copy._type)
+	{std::cout << "Animal copy construction" << std::endl;
+	*this = copy;}
 
 //**************************************************************************//
 //                                 Setters                                  //
 //**************************************************************************//
 
-
 //**************************************************************************//
 //                                 Getters                                  //
 //**************************************************************************//
+
+std::string	Animal::getType(void) {return (this->_type);}
 
 //**************************************************************************//
 //                             Member functions                             //
 //**************************************************************************//
 
-void	Dog::makeSound() const {std::cout << "Wooufff" << std::endl;}
+void	Animal::makeSound(void) {std::cout << "No sound came out..." << std::endl;}
 
 //**************************************************************************//
 //                           Operators overload                             //
 //**************************************************************************//
 
-Dog & Dog::operator=(Dog const & rhs) {
-	this->_type = rhs._type;
+Animal	&Animal::operator=(const Animal &copy){
+	if (this != &copy){
+		this->_type = copy._type;}
 	return (*this);}
 
 //**************************************************************************//
 //                               Destructors                                //
 //**************************************************************************//
 
-Dog::~Dog() {
-	delete _brain;
-	std::cout << "Dog destructed" << std::endl;}
+Animal::~Animal(void){std::cout << "Animal destruction" << std::endl;}

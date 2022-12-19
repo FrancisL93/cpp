@@ -3,10 +3,6 @@
 
 # include <iostream>
 
-
-#ifndef CLAPTRAP_HPP_
-#define CLAPTRAP_HPP_
-
 class ClapTrap{
 public:
 //Default constructor (Required)
@@ -38,7 +34,5 @@ protected:
 	unsigned int	_energyPoints;
 	unsigned int	_attackDamage;
 };
-#endif // CLAPTRAP_HPP_
-
 
 #endif

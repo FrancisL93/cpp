@@ -4,14 +4,18 @@
 //                              Constructors                                //
 //**************************************************************************//
 
-Cat::Cat(): Animal("Cat") {
-	_brain = new Brain();
-	std::cout << "Cat constructed" << std::endl;}
+Cat::Cat(void) {
+	this->_type = "Cat";
+	std::cout << "Cat default construction" << std::endl;}
 
-Cat::Cat(Cat &cat) {
-	_brain = new Brain();
-	*_brain = *cat._brain;
-	_type = cat._type;}
+Cat::Cat(std::string type) {
+	this->_type = type;
+	std::cout << "Cat construction" << std::endl;}
+
+Cat::Cat(const Cat &copy) {
+	this->_type = copy._type;
+	std::cout << "Cat copy construction" << std::endl;
+	*this = copy;}
 
 //**************************************************************************//
 //                                 Setters                                  //
@@ -25,12 +29,19 @@ Cat::Cat(Cat &cat) {
 //                             Member functions                             //
 //**************************************************************************//
 
-void	Cat::makeSound() const {std::cout << "Miawwww" << std::endl;}
+void	Cat::makeSound(void) {std::cout << "Miaw" << std::endl;}
+
+//**************************************************************************//
+//                           Operators overload                             //
+//**************************************************************************//
+
+Cat	&Cat::operator=(const Cat &copy){
+	if (this != &copy){
+		this->_type = copy._type;}
+	return (*this);}
 
 //**************************************************************************//
 //                               Destructors                                //
 //**************************************************************************//
 
-Cat::~Cat() {
-	delete _brain;
-	std::cout << "Cat destructed" << std::endl;}
+Cat::~Cat(void){std::cout << "Cat destruction" << std::endl;}

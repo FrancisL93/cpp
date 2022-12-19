@@ -1,15 +1,22 @@
-#include "Animal.hpp"
+#include "WrongCat.hpp"
 
 //**************************************************************************//
 //                              Constructors                                //
 //**************************************************************************//
 
-Animal::Animal(): _type("") {
-	std::cout << "Animal constructed" << std::endl;}
+WrongCat::WrongCat(void) {
+	this->_type = "WrongCat";
+	std::cout << "WrongCat default construction" << std::endl;}
 
-Animal::Animal( std::string type ): _type(type) {
-	std::cout << "Animal " << this->_type << " constructed" << std::endl;
-}
+WrongCat::WrongCat(std::string type) {
+	this->_type = type;
+	std::cout << "WrongCat construction" << std::endl;}
+
+WrongCat::WrongCat(const WrongCat &copy) {
+	this->_type = copy._type;
+	std::cout << "WrongCat copy construction" << std::endl;
+	*this = copy;}
+
 //**************************************************************************//
 //                                 Setters                                  //
 //**************************************************************************//
@@ -18,26 +25,23 @@ Animal::Animal( std::string type ): _type(type) {
 //                                 Getters                                  //
 //**************************************************************************//
 
-std::string	Animal::getType() const {return (this->_type);}
-
 //**************************************************************************//
 //                             Member functions                             //
 //**************************************************************************//
 
-void	Animal::makeSound() const {
-	std::cout << "I'm a speaking animal" << std::endl;}
+void	WrongCat::makeSound(void) {std::cout << "WOOF" << std::endl;}
 
 //**************************************************************************//
 //                           Operators overload                             //
 //**************************************************************************//
 
-Animal & Animal::operator=(Animal const & rhs) {
-	this->_type = rhs._type;
+WrongCat	&WrongCat::operator=(const WrongCat &copy){
+	if (this != &copy){
+		this->_type = copy._type;}
 	return (*this);}
 
 //**************************************************************************//
 //                               Destructors                                //
 //**************************************************************************//
 
-Animal::~Animal() {
-	std::cout << "Animal " << this->_type << " destructed" << std::endl;}
+WrongCat::~WrongCat(void){std::cout << "WrongCat destruction" << std::endl;}
