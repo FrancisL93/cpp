@@ -11,7 +11,6 @@ public:
 //Copy constructor (Required)
 	Cat (const Cat &copy );
 //Constructors
-	Cat (std::string type);
 //Default Destructor (Required)
 	~Cat(void);
 //Destructors

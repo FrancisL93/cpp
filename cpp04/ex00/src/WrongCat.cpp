@@ -8,10 +8,6 @@ WrongCat::WrongCat(void) {
 	this->_type = "WrongCat";
 	std::cout << "WrongCat default construction" << std::endl;}
 
-WrongCat::WrongCat(std::string type) {
-	this->_type = type;
-	std::cout << "WrongCat construction" << std::endl;}
-
 WrongCat::WrongCat(const WrongCat &copy) {
 	this->_type = copy._type;
 	std::cout << "WrongCat copy construction" << std::endl;

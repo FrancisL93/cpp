@@ -1,11 +1,23 @@
 #include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
 
 int	main(void) {
-	Cat a;
+	Animal *animals[10];
+	Animal *copy;
 
-	a.makeSound();
+	for (int i = 0; i < 4; i++) {
+		if (i % 2 == 0) {animals[i] = new Dog();}
+		else {animals[i] = new Cat();}
+		std::cout << i << ": " << animals[i]->getType() << std::endl;
+		std::cout << std::endl;}
+	copy = animals[0];
+	std::cout << "copy :" << copy->getType() << " vs original: " << animals[0]->getType() << std::endl;
+	for (int i = 0; i < 3; i++) {
+		animals[i] = animals[i + 1];
+		std::cout << i << ": " << animals[i]->getType() << std::endl;}
+	std::cout << "copy :" << copy->getType() << " vs original: " << animals[0]->getType() << std::endl;
+	for (int i = 0; i < 3; i++) {delete animals[i]; std::cout << std::endl;}
+	delete copy;
+
 }

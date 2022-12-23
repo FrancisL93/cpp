@@ -1,28 +1,29 @@
-#ifndef	CPP04_EX00_WRONGCAT_HPP
-# define	CPP04_EX00_WRONGCAT_HPP
+#ifndef	CPP04_EX02_BRAIN_HPP
+# define	CPP04_EX02_BRAIN_HPP
 
-# include "WrongAnimal.hpp"
 # include <iostream>
 
-class WrongCat : public WrongAnimal{
+class Brain{
 public:
 //Default constructor (Required)
-	WrongCat(void);
+	Brain(void);
 //Copy constructor (Required)
-	WrongCat (const WrongCat &copy );
+	Brain (const Brain &copy );
 //Constructors
 //Default Destructor (Required)
-	~WrongCat(void);
+	virtual ~Brain(void);
 //Destructors
 //Copy assignment operator (Required)
-	WrongCat & operator = (const WrongCat &copy);
+	Brain & operator = (const Brain &copy);
 //Operators
 //Swap function
 //Setters & Getters
 //Other functions
-	void	makeSound(void);
 
 protected:
+
+private:
+	std::string	_ideas[100];
 };
 
 #endif

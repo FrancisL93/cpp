@@ -8,10 +8,6 @@ Dog::Dog(void) {
 	this->_type = "Dog";
 	std::cout << "Dog default construction" << std::endl;}
 
-Dog::Dog(std::string type) {
-	this->_type = type;
-	std::cout << "Dog construction" << std::endl;}
-
 Dog::Dog(const Dog &copy) {
 	this->_type = copy._type;
 	std::cout << "Dog copy construction" << std::endl;

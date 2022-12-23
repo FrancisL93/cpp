@@ -1,17 +1,19 @@
-#include "Cat.hpp"
+#include "PresidentialPardonForm.hpp"
 
 //**************************************************************************//
 //                              Constructors                                //
 //**************************************************************************//
 
-Cat::Cat(void) {
-	this->_type = "Cat";
-	this->_brain = new Brain();
-	std::cout << "Cat default construction" << std::endl;}
+PresidentialPardonForm::PresidentialPardonForm(void) : Form("Default", 72, 45){
+	std::cout << "PresidentialPardonForm default construction" << std::endl;}
 
-Cat::Cat(const Cat &copy) {
-	this->_brain = new Brain();
-	std::cout << "Cat copy construction" << std::endl;
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : 
+	Form(target, 72, 45) {
+	std::cout << "PresidentialPardonForm default construction" << std::endl;}
+
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &copy) : 
+	Form(copy) {
+	std::cout << "PresidentialPardonForm copy construction" << std::endl;
 	*this = copy;}
 
 //**************************************************************************//
@@ -26,23 +28,30 @@ Cat::Cat(const Cat &copy) {
 //                             Member functions                             //
 //**************************************************************************//
 
-void	Cat::makeSound(void) {std::cout << "Miaw" << std::endl;}
+void	PresidentialPardonForm::beSigned(Bureaucrat& bureaucrat) {
+	if (bureaucrat.getGrade() > this->getGradeSign()) {
+		throw GradeTooLowException(bureaucrat.getGrade());}
+	this->_signature = true;}
+
+void	PresidentialPardonForm::formAction(void) const {
+	std::cout << this->getName() << " has been pardoned by Zaphod Beeblerox!" << std::endl;}
 
 //**************************************************************************//
 //                           Operators overload                             //
 //**************************************************************************//
 
-Cat	&Cat::operator=(const Cat &copy){
+PresidentialPardonForm	&PresidentialPardonForm::operator=(const PresidentialPardonForm &copy){
 	if (this != &copy){
-		delete this->_brain;
-		this->_type = copy._type;
-		*this->_brain = *(copy._brain);}
+		Form::operator=(copy);}
 	return (*this);}
 
 //**************************************************************************//
 //                               Destructors                                //
 //**************************************************************************//
 
-Cat::~Cat(void){
-	delete this->_brain;
-	std::cout << "Cat destruction" << std::endl;}
+PresidentialPardonForm::~PresidentialPardonForm(void){std::cout << "PresidentialPardonForm destruction" << std::endl;}
+
+//**************************************************************************//
+//                              Friend function                             //
+//**************************************************************************//
+

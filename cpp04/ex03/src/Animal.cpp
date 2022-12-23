@@ -1,17 +1,17 @@
-#include "Cat.hpp"
+#include "Animal.hpp"
 
 //**************************************************************************//
 //                              Constructors                                //
 //**************************************************************************//
 
-Cat::Cat(void) {
-	this->_type = "Cat";
-	this->_brain = new Brain();
-	std::cout << "Cat default construction" << std::endl;}
+Animal::Animal(void) : _type("")
+	{std::cout << "Animal default construction" << std::endl;}
 
-Cat::Cat(const Cat &copy) {
-	this->_brain = new Brain();
-	std::cout << "Cat copy construction" << std::endl;
+Animal::Animal(std::string type) : _type(type)
+	{std::cout << "Animal construction" << std::endl;}
+
+Animal::Animal(const Animal &copy) : _type(copy._type)
+	{std::cout << "Animal copy construction" << std::endl;
 	*this = copy;}
 
 //**************************************************************************//
@@ -22,27 +22,25 @@ Cat::Cat(const Cat &copy) {
 //                                 Getters                                  //
 //**************************************************************************//
 
+std::string	Animal::getType(void) {return (this->_type);}
+
 //**************************************************************************//
 //                             Member functions                             //
 //**************************************************************************//
 
-void	Cat::makeSound(void) {std::cout << "Miaw" << std::endl;}
+void	Animal::makeSound(void) {std::cout << "No sound came out..." << std::endl;}
 
 //**************************************************************************//
 //                           Operators overload                             //
 //**************************************************************************//
 
-Cat	&Cat::operator=(const Cat &copy){
+Animal	&Animal::operator=(const Animal &copy){
 	if (this != &copy){
-		delete this->_brain;
-		this->_type = copy._type;
-		*this->_brain = *(copy._brain);}
+		this->_type = copy._type;}
 	return (*this);}
 
 //**************************************************************************//
 //                               Destructors                                //
 //**************************************************************************//
 
-Cat::~Cat(void){
-	delete this->_brain;
-	std::cout << "Cat destruction" << std::endl;}
+Animal::~Animal(void){std::cout << "Animal destruction" << std::endl;}

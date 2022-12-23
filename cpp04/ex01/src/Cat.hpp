@@ -1,5 +1,5 @@
 #ifndef	CPP04_EX01_CAT_HPP
-# define	CPP04_EX01_CAT_HPP
+# define CPP04_EX01_CAT_HPP
 
 # include <iostream>
 # include "Animal.hpp"
@@ -12,7 +12,6 @@ public:
 //Copy constructor (Required)
 	Cat (const Cat &copy );
 //Constructors
-	Cat (std::string type);
 //Default Destructor (Required)
 	~Cat(void);
 //Destructors

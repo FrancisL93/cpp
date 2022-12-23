@@ -11,7 +11,6 @@ public:
 //Copy constructor (Required)
 	Dog (const Dog &copy );
 //Constructors
-	Dog (std::string type);
 //Default Destructor (Required)
 	~Dog(void);
 //Destructors

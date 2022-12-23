@@ -5,7 +5,7 @@ ifndef SETTINGS_MK
 ##                             Project Variables                              ##
 ## ************************************************************************** ##
 
-NAME	= poly
+NAME	= maggots
 
 CC = c++
 #FLAGS	= $(CFLAGS) #For programs in c
@@ -13,7 +13,7 @@ FLAGS	= $(CXXFLAGS) #For programs in c++
 
 ARG = 
 
-SRCS = 	Animal.cpp Cat.cpp Dog.cpp Brain.cpp
+SRCS = 	Bureaucrat.cpp Form.cpp
 
 SRC := $(SRCS)
 SRC += main.cpp

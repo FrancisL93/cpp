@@ -13,7 +13,7 @@ FLAGS	= $(CXXFLAGS) #For programs in c++
 
 ARG = 
 
-SRCS = 	Animal.cpp Cat.cpp Dog.cpp Brain.cpp
+SRCS = 	AMateria.cpp
 
 SRC := $(SRCS)
 SRC += main.cpp

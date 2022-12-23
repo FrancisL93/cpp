@@ -1,21 +1,22 @@
-#ifndef	CPP04_EX00_WRONGCAT_HPP
-# define	CPP04_EX00_WRONGCAT_HPP
+#ifndef	CPP04_EX02_DOG_HPP
+# define	CPP04_EX02_DOG_HPP
 
-# include "WrongAnimal.hpp"
 # include <iostream>
+# include "Animal.hpp"
+# include "Brain.hpp"
 
-class WrongCat : public WrongAnimal{
+class Dog : public Animal{
 public:
 //Default constructor (Required)
-	WrongCat(void);
+	Dog(void);
 //Copy constructor (Required)
-	WrongCat (const WrongCat &copy );
+	Dog (const Dog &copy );
 //Constructors
 //Default Destructor (Required)
-	~WrongCat(void);
+	~Dog(void);
 //Destructors
 //Copy assignment operator (Required)
-	WrongCat & operator = (const WrongCat &copy);
+	Dog & operator = (const Dog &copy);
 //Operators
 //Swap function
 //Setters & Getters
@@ -23,6 +24,9 @@ public:
 	void	makeSound(void);
 
 protected:
+
+private:
+	Brain	*_brain;
 };
 
 #endif

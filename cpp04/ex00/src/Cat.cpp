@@ -8,10 +8,6 @@ Cat::Cat(void) {
 	this->_type = "Cat";
 	std::cout << "Cat default construction" << std::endl;}
 
-Cat::Cat(std::string type) {
-	this->_type = type;
-	std::cout << "Cat construction" << std::endl;}
-
 Cat::Cat(const Cat &copy) {
 	this->_type = copy._type;
 	std::cout << "Cat copy construction" << std::endl;

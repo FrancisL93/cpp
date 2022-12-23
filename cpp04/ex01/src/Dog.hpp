@@ -1,8 +1,9 @@
 #ifndef	CPP04_EX01_DOG_HPP
 # define	CPP04_EX01_DOG_HPP
 
-# include "Animal.hpp"
 # include <iostream>
+# include "Animal.hpp"
+# include "Brain.hpp"
 
 class Dog : public Animal{
 public:
@@ -11,7 +12,6 @@ public:
 //Copy constructor (Required)
 	Dog (const Dog &copy );
 //Constructors
-	Dog (std::string type);
 //Default Destructor (Required)
 	~Dog(void);
 //Destructors
@@ -24,6 +24,9 @@ public:
 	void	makeSound(void);
 
 protected:
+
+private:
+	Brain	*_brain;
 };
 
 #endif

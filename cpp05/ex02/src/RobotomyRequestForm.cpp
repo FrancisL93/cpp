@@ -1,17 +1,19 @@
-#include "Cat.hpp"
+#include "RobotomyRequestForm.hpp"
 
 //**************************************************************************//
 //                              Constructors                                //
 //**************************************************************************//
 
-Cat::Cat(void) {
-	this->_type = "Cat";
-	this->_brain = new Brain();
-	std::cout << "Cat default construction" << std::endl;}
+RobotomyRequestForm::RobotomyRequestForm(void) : Form("Default", 72, 45){
+	std::cout << "RobotomyRequestForm default construction" << std::endl;}
 
-Cat::Cat(const Cat &copy) {
-	this->_brain = new Brain();
-	std::cout << "Cat copy construction" << std::endl;
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : 
+	Form(target, 72, 45) {
+	std::cout << "RobotomyRequestForm default construction" << std::endl;}
+
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &copy) : 
+	Form(copy) {
+	std::cout << "RobotomyRequestForm copy construction" << std::endl;
 	*this = copy;}
 
 //**************************************************************************//
@@ -26,23 +28,34 @@ Cat::Cat(const Cat &copy) {
 //                             Member functions                             //
 //**************************************************************************//
 
-void	Cat::makeSound(void) {std::cout << "Miaw" << std::endl;}
+void	RobotomyRequestForm::beSigned(Bureaucrat& bureaucrat) {
+	if (bureaucrat.getGrade() > this->getGradeSign()) {
+		throw GradeTooLowException(bureaucrat.getGrade());}
+	this->_signature = true;}
+
+void	RobotomyRequestForm::formAction(void) const {
+	std::cout << " \"BzZZzzzBBzzzzbBzzzzbZBzzz\"" << std::endl;
+	if (2 == 0) {
+		std::cout << this->getName() << " robotomised successfully!" << std::endl;}
+	else {
+		std::cout << this->getName() << " robotomisation failure..." << std::endl;}}
 
 //**************************************************************************//
 //                           Operators overload                             //
 //**************************************************************************//
 
-Cat	&Cat::operator=(const Cat &copy){
+RobotomyRequestForm	&RobotomyRequestForm::operator=(const RobotomyRequestForm &copy){
 	if (this != &copy){
-		delete this->_brain;
-		this->_type = copy._type;
-		*this->_brain = *(copy._brain);}
+		Form::operator=(copy);}
 	return (*this);}
 
 //**************************************************************************//
 //                               Destructors                                //
 //**************************************************************************//
 
-Cat::~Cat(void){
-	delete this->_brain;
-	std::cout << "Cat destruction" << std::endl;}
+RobotomyRequestForm::~RobotomyRequestForm(void){std::cout << "RobotomyRequestForm destruction" << std::endl;}
+
+//**************************************************************************//
+//                              Friend function                             //
+//**************************************************************************//
+
