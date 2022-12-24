@@ -1,19 +1,14 @@
-#include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 //**************************************************************************//
 //                              Constructors                                //
 //**************************************************************************//
 
-PresidentialPardonForm::PresidentialPardonForm(void) : Form("Default", 25, 5){
-	std::cout << "PresidentialPardonForm default construction" << std::endl;}
+Intern::Intern(void) {
+	std::cout << "Intern default construction" << std::endl;}
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : 
-	Form(target, 25, 5) {
-	std::cout << "PresidentialPardonForm default construction" << std::endl;}
-
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &copy) : 
-	Form(copy) {
-	std::cout << "PresidentialPardonForm copy construction" << std::endl;
+Intern::Intern(const Intern &copy) {
+	std::cout << "Intern copy construction" << std::endl;
 	*this = copy;}
 
 //**************************************************************************//
@@ -28,30 +23,34 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &cop
 //                             Member functions                             //
 //**************************************************************************//
 
-void	PresidentialPardonForm::beSigned(Bureaucrat& bureaucrat) {
-	if (bureaucrat.getGrade() > this->getGradeSign()) {
-		throw GradeTooLowException(bureaucrat.getGrade());}
-	this->_signature = true;}
-
-void	PresidentialPardonForm::formAction(void) const {
-	std::cout << this->getName() << " has been pardoned by Zaphod Beeblerox!" << std::endl;}
+Form	*Intern::makeForm(std::string form_name, std::string target) {
+	std::string	forms[3] = {"shrubbery creation", "presidential pardon", "robotomy request"};
+	int	ret = -1;
+	for (int i = 0; i < 3; i++) {if (form_name == forms[i]) {ret = i;}}
+	switch (ret) {
+		case -1: {throw Intern::FormDoesntExist(); return (NULL);}
+		case 0: {std::cout << "Intern creates " << forms[ret] << std::endl;
+			return new ShrubberyCreationForm(target);}
+		case 1: {std::cout << "Intern creates " << forms[ret] << std::endl;
+			return new PresidentialPardonForm(target);}
+		case 2: {std::cout << "Intern creates " << forms[ret] << std::endl;
+			return new RobotomyRequestForm(target);}
+	}
+	return (NULL);
+}
 
 //**************************************************************************//
 //                           Operators overload                             //
 //**************************************************************************//
 
-PresidentialPardonForm	&PresidentialPardonForm::operator=(const PresidentialPardonForm &copy){
-	if (this != &copy){
-		Form::operator=(copy);}
+Intern	&Intern::operator=(const Intern &copy){
+	if (this != &copy) {
+		*this = copy;}
 	return (*this);}
 
 //**************************************************************************//
 //                               Destructors                                //
 //**************************************************************************//
 
-PresidentialPardonForm::~PresidentialPardonForm(void){std::cout << "PresidentialPardonForm destruction" << std::endl;}
-
-//**************************************************************************//
-//                              Friend function                             //
-//**************************************************************************//
+Intern::~Intern(void){std::cout << "Intern destruction" << std::endl;}
 

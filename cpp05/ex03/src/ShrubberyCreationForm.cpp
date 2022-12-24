@@ -1,19 +1,19 @@
-#include "PresidentialPardonForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 //**************************************************************************//
 //                              Constructors                                //
 //**************************************************************************//
 
-PresidentialPardonForm::PresidentialPardonForm(void) : Form("Default", 25, 5){
-	std::cout << "PresidentialPardonForm default construction" << std::endl;}
+ShrubberyCreationForm::ShrubberyCreationForm(void) : Form("Default", 145, 137){
+	std::cout << "ShrubberyCreationForm default construction" << std::endl;}
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : 
-	Form(target, 25, 5) {
-	std::cout << "PresidentialPardonForm default construction" << std::endl;}
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : 
+	Form(target, 145, 137) {
+	std::cout << "ShrubberyCreationForm default construction" << std::endl;}
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &copy) : 
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &copy) : 
 	Form(copy) {
-	std::cout << "PresidentialPardonForm copy construction" << std::endl;
+	std::cout << "ShrubberyCreationForm copy construction" << std::endl;
 	*this = copy;}
 
 //**************************************************************************//
@@ -28,19 +28,29 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &cop
 //                             Member functions                             //
 //**************************************************************************//
 
-void	PresidentialPardonForm::beSigned(Bureaucrat& bureaucrat) {
+void	ShrubberyCreationForm::beSigned(Bureaucrat& bureaucrat) {
 	if (bureaucrat.getGrade() > this->getGradeSign()) {
 		throw GradeTooLowException(bureaucrat.getGrade());}
 	this->_signature = true;}
 
-void	PresidentialPardonForm::formAction(void) const {
-	std::cout << this->getName() << " has been pardoned by Zaphod Beeblerox!" << std::endl;}
+void	ShrubberyCreationForm::formAction(void) const {
+	std::ofstream outfile;
+
+	outfile.open(this->getName() + "_shrubbery", std::ios::out);
+	if (!outfile.good()) {
+		std::cout << "Error: unable to open file" << std::endl;
+		return;}
+	outfile << "  *  " << std::endl;
+	outfile << " *** " << std::endl;
+	outfile << "*****" << std::endl;
+	outfile.close();
+}
 
 //**************************************************************************//
 //                           Operators overload                             //
 //**************************************************************************//
 
-PresidentialPardonForm	&PresidentialPardonForm::operator=(const PresidentialPardonForm &copy){
+ShrubberyCreationForm	&ShrubberyCreationForm::operator=(const ShrubberyCreationForm &copy){
 	if (this != &copy){
 		Form::operator=(copy);}
 	return (*this);}
@@ -49,7 +59,7 @@ PresidentialPardonForm	&PresidentialPardonForm::operator=(const PresidentialPard
 //                               Destructors                                //
 //**************************************************************************//
 
-PresidentialPardonForm::~PresidentialPardonForm(void){std::cout << "PresidentialPardonForm destruction" << std::endl;}
+ShrubberyCreationForm::~ShrubberyCreationForm(void){std::cout << "ShrubberyCreationForm destruction" << std::endl;}
 
 //**************************************************************************//
 //                              Friend function                             //
