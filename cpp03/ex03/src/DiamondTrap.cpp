@@ -14,6 +14,7 @@ DiamondTrap::DiamondTrap(void): ScavTrap(), FragTrap() {
 DiamondTrap::DiamondTrap(std::string name): ScavTrap(name), FragTrap(name) {
 	_name = name;
 	ClapTrap::_name = name + "_clap_name";
+	_energyPoints = 50;
 	std::cout << "Diamond construction" << std::endl;}
 
 DiamondTrap::DiamondTrap(const DiamondTrap &copy) : ScavTrap(copy), FragTrap(copy) {

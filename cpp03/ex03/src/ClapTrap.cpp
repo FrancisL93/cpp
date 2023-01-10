@@ -9,7 +9,7 @@ ClapTrap::ClapTrap(void) : _name("Default"), _hitPoints(10), \
 	{std::cout << "Default construction" << std::endl;}
 
 ClapTrap::ClapTrap(std::string name): _name(name), _hitPoints(10), \
-_energyPoints(10), _attackDamage(0){std::cout << "Construction" << std::endl;}
+_energyPoints(10), _attackDamage(0){std::cout << "Claptrap Construction" << std::endl;}
 
 ClapTrap::ClapTrap(const ClapTrap &copy) : _name(copy._name), \
 	_hitPoints(copy._hitPoints), _energyPoints(copy._energyPoints), \
@@ -55,7 +55,7 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 	if (this->_hitPoints == 0){std::cout << this->_name << " is dead..." << std::endl;}
 	else if (this->_energyPoints > 0) {
 		std::cout << this->_name << " repairs himself by " << amount << " hit points!" << std::endl;
-		this->_hitPoints += 1;
+		this->_hitPoints += amount;
 		std::cout << this->_name << " now has " << this->_hitPoints << " hit points" << std::endl;
 		this->_energyPoints -= 1;}
 	else {std::cout << "Not enough energy..." << std::endl;}}

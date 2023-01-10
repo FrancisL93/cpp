@@ -22,6 +22,7 @@ public:
 //Setters & Getters
 //Other functions
 	void	guardGate();
+	void	attack(const std::string& target);
 	private:
 };
 

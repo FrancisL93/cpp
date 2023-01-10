@@ -23,8 +23,7 @@ FragTrap::FragTrap(const FragTrap &copy) : ClapTrap(copy) {
 	_hitPoints = copy._hitPoints;
 	_energyPoints = copy._energyPoints;
 	_attackDamage = copy._attackDamage;
-	std::cout << "Frag copy construction" << std::endl;
-	*this = copy;}
+	std::cout << "Frag copy construction" << std::endl;}
 
 //**************************************************************************//
 //                                 Setters                                  //
@@ -39,7 +38,7 @@ FragTrap::FragTrap(const FragTrap &copy) : ClapTrap(copy) {
 //**************************************************************************//
 
 void	FragTrap::highFivesGuys(void) {
-	std::cout << "I request a high fives!" << std::endl;}
+	std::cout << getName() << " request a high fives!" << std::endl;}
 
 //**************************************************************************//
 //                           Operators overload                             //

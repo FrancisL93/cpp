@@ -41,6 +41,14 @@ ScavTrap::ScavTrap(const ScavTrap &copy) : ClapTrap(copy) {
 void	ScavTrap::guardGate() {
 	std::cout << this->_name << " is keeping the gate" << std::endl;}
 
+void	ScavTrap::attack(const std::string& target){
+	if (this->_hitPoints == 0){std::cout << this->_name << " is dead..." << std::endl;}
+	else if (this->_energyPoints > 0) {
+		std::cout << this->_name << " slowly attacks " << target << "!" << std::endl;
+		std::cout << target << " loses " << this->_attackDamage << " hit points" << std::endl;
+		this->_energyPoints -= 1;}
+	else {std::cout << "Not enough energy..." << std::endl;}}
+
 //**************************************************************************//
 //                           Operators overload                             //
 //**************************************************************************//

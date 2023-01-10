@@ -24,6 +24,14 @@ void	Span::addNumber(int x) {
 		throw std::length_error("Storage is full");}
 	storage_.push_back(x);}
 
+void	Span::addNumbers(const std::vector<int> &numbers) {
+	std::vector<int> i = numbers.begin();
+	while (i != numbers.end()) {
+		addNumber(i);}
+		i++;;
+	}
+}
+
 int	Span::shortestSpan() const {
 	if (storage_.size() < 2) {
 		throw std::logic_error("No span can be found (size < 2)");}

@@ -21,6 +21,7 @@ public:
 //Swap function
 //Setters & Getters
 //Other functions
+	void	attack(const std::string& target);
 	void	guardGate();
 	private:
 };
