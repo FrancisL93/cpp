@@ -8,45 +8,41 @@ template <typename T>
 class Array {
 public:
 //Default constructor (Required)
-Array() : data(NULL), size(0) {}
+Array() : _data(NULL), _size(0) {}
 //Copy constructor (Required)
-Array (const Array<T> &copy) : data(new T[copy.size]), size(copy.size) {
+Array (const Array<T> &copy) : _data(new T[copy.size]), _size(copy.size) {
 	for (unsigned int i = 0; i < copy.size; i++) {
-		data[i] = copy.data[i];}
+		_data[i] = copy._data[i];}
 }
 //Constructors
-Array(unsigned int n) : data(new T[n]()), size(n) {}
+Array(unsigned int n) : _data(new T[n]()), _size(n) {}
 //Default Destructor (Required)
-~Array() {delete [] data;}
+~Array() {delete [] _data;}
 //Destructors
 //Copy assignment operator (Required)
 Array<T> & operator = (const Array<T> &copy) {
 	if (this != copy) {
-		delete[] data;
-		data = new T[copy.size];
-		size = copy.size;
-		for (unsigned int i = 0; i < copy.size; i++) {
-			data[i] = copy.data[i];}
+		delete[] _data;
+		_data = new T[copy._size];
+		_size = copy._size;
+		for (unsigned int i = 0; i < copy._size; i++) {
+			_data[i] = copy._data[i];}
 	}
 	return (*this);};
 //Operators
 T	&operator[](unsigned int index) {
-	if (index >= size) {
+	if (index >= this->_size) {
 		throw std::out_of_range("Array index is out of bounds");}
-	return (data[index]);}
+	return (_data[index]);}
 //Swap function
 //Setters & Getters
-	T	getData(unsigned int index) {
-		if (index >= size) {
-			throw std::out_of_range("Array index is out of bounds");}
-		return (data[index]);}
-	unsigned int	getSize() const {return (size);}
+	unsigned int	size() const {return (_size);}
 //Other functions
+//Variables
 protected:
-
 private:
-	T*				data;
-	unsigned int	size;
+	T*				_data;
+	unsigned int	_size;
 };
 
 #endif
