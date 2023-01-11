@@ -24,12 +24,13 @@ void	Span::addNumber(int x) {
 		throw std::length_error("Storage is full");}
 	storage_.push_back(x);}
 
-void	Span::addNumbers(const std::vector<int> &numbers) {
-	std::vector<int> i = numbers.begin();
-	while (i != numbers.end()) {
-		addNumber(i);}
-		i++;;
-	}
+void	Span::addNumbers(std::vector<int>::iterator first, std::vector<int>::iterator last) {
+	if (storage_.size() == N_) {
+		throw std::length_error("Storage is full");}
+	std::vector<int> tmp(first, last);
+	if (storage_.size() + tmp.size() > N_) {
+		throw std::length_error("Not enough storage");}
+	storage_.insert(storage_.begin(), tmp.begin(), tmp.end());
 }
 
 int	Span::shortestSpan() const {

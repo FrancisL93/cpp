@@ -23,7 +23,7 @@ Span & operator = (const Span &copy);
 //Setters & Getters
 //Other functions
 	void addNumber(int x);
-	void addNumbers(const std::vector<int> &numbers);
+	void addNumbers(std::vector<int>::iterator first, std::vector<int>::iterator last);
 	int shortestSpan() const;
 	int longestSpan() const;
 protected:
